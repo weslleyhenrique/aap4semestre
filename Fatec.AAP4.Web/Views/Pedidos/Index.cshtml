@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Fatec.AAP4.Web.Models.pedido>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Incluir", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.data_compra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.valor_total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_item_pedido_fk)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cliente.razaosocial)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.data_compra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.valor_total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_item_pedido_fk)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cliente.razaosocial)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.idPedido }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.idPedido }) |
+            @Html.ActionLink("Deletar", "Delete", new { id=item.idPedido })
+        </td>
+    </tr>
+}
+
+</table>

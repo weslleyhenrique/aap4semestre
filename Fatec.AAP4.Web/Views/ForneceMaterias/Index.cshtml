@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Fatec.AAP4.Web.Models.fornece_materiaprima>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Incluir", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fornecedor.cnpj)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.materia_prima.descricao_matprima)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fornecedor.cnpj)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.materia_prima.descricao_matprima)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_fornecedor_materiaprima }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.id_fornecedor_materiaprima }) |
+            @Html.ActionLink("Deletar", "Delete", new { id=item.id_fornecedor_materiaprima })
+        </td>
+    </tr>
+}
+
+</table>

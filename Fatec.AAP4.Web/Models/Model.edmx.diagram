@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dde7ba23453145379cc921aa55f2eab7" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="mydbModel.cliente" Width="1.5" PointX="0.75" PointY="12.375" />
+        <EntityTypeShape EntityType="mydbModel.contas_pagar" Width="1.5" PointX="5.25" PointY="4.5" />
+        <EntityTypeShape EntityType="mydbModel.contas_receber" Width="1.5" PointX="5.25" PointY="8.625" />
+        <EntityTypeShape EntityType="mydbModel.dre" Width="1.5" PointX="0.75" PointY="9.25" />
+        <EntityTypeShape EntityType="mydbModel.estoque_materiaprima" Width="1.5" PointX="8.25" PointY="8.625" />
+        <EntityTypeShape EntityType="mydbModel.estoque_produtoacabado" Width="1.5" PointX="5.25" PointY="12.625" />
+        <EntityTypeShape EntityType="mydbModel.fornece_materiaprima" Width="1.5" PointX="8.25" PointY="3.375" />
+        <EntityTypeShape EntityType="mydbModel.fornecedor" Width="1.5" PointX="3" PointY="4.5" />
+        <EntityTypeShape EntityType="mydbModel.item_pedido" Width="1.5" PointX="5.25" PointY="22.875" />
+        <EntityTypeShape EntityType="mydbModel.materia_prima" Width="1.5" PointX="6" PointY="1.125" />
+        <EntityTypeShape EntityType="mydbModel.outras_contas" Width="1.5" PointX="5.25" PointY="19.875" />
+        <EntityTypeShape EntityType="mydbModel.pedido" Width="1.5" PointX="3" PointY="12.875" />
+        <EntityTypeShape EntityType="mydbModel.plano_contas" Width="1.5" PointX="3" PointY="8.625" />
+        <EntityTypeShape EntityType="mydbModel.produto" Width="1.5" PointX="3" PointY="16" />
+        <AssociationConnector Association="mydbModel.fk_Pedido_Cliente1" />
+        <AssociationConnector Association="mydbModel.fk_Contas_Pagar_Conta_Movimentação1" />
+        <AssociationConnector Association="mydbModel.fk_Contas_Pagar_Fornecedor1" />
+        <AssociationConnector Association="mydbModel.fk_Contas_Receber_Conta_Movimentação1" />
+        <AssociationConnector Association="mydbModel.fk_Contas_Receber_Pedido1" />
+        <AssociationConnector Association="mydbModel.fk_Plano_Contas_DRE1" />
+        <AssociationConnector Association="mydbModel.fk_Estoque_MateriaPrima_Conta_Movimentação1" />
+        <AssociationConnector Association="mydbModel.fk_Estoque_MateriaPrima_Materia_Prima1" />
+        <AssociationConnector Association="mydbModel.fk_Estoque_ProdutoAcabado_Conta_Movimentação1" />
+        <AssociationConnector Association="mydbModel.fk_Estoque_ProdutoAcabado_Produto1" />
+        <AssociationConnector Association="mydbModel.fk_Fornecedor_has_Materia_Prima_Fornecedor1" />
+        <AssociationConnector Association="mydbModel.fk_Fornecedor_has_Materia_Prima_Materia_Prima1" />
+        <AssociationConnector Association="mydbModel.id_produto_fk" />
+        <AssociationConnector Association="mydbModel.fk_Outras_Contas_Plano_Contas1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

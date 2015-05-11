@@ -1,0 +1,58 @@
+﻿@model Fatec.AAP4.Web.Models.item_pedido
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>item_pedido</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_item_pedido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_item_pedido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.valor_unitario_item)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.valor_unitario_item)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quantidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantidade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.valor_total_item)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.valor_total_item)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.produto.descricao_produto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.produto.descricao_produto)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.key_item }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

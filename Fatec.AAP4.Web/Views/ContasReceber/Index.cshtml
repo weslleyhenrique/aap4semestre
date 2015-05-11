@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Fatec.AAP4.Web.Models.contas_receber>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Incluir", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.data_cadastro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.data_recebimento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.forma_pagamento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.plano_contas.codigo_planocontas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pedido.idPedido)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.data_cadastro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.data_recebimento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.forma_pagamento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.plano_contas.codigo_planocontas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pedido.idPedido)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.idContas_Receber }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.idContas_Receber }) |
+            @Html.ActionLink("Deletar", "Delete", new { id=item.idContas_Receber })
+        </td>
+    </tr>
+}
+
+</table>

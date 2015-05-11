@@ -1,0 +1,66 @@
+﻿@model Fatec.AAP4.Web.Models.contas_receber
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>contas_receber</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.data_cadastro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_cadastro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data_recebimento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_recebimento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.forma_pagamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.forma_pagamento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.plano_contas.codigo_planocontas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.plano_contas.codigo_planocontas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pedido.idPedido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pedido.idPedido)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.idContas_Receber }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

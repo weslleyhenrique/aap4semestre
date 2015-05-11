@@ -1,0 +1,1016 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="mydbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="razaosocial" Type="varchar" MaxLength="100" />
+          <Property Name="cnpj" Type="varchar" MaxLength="20" />
+          <Property Name="incricao_estadual" Type="varchar" MaxLength="11" />
+          <Property Name="endereco" Type="varchar" MaxLength="150" />
+          <Property Name="bairro" Type="varchar" MaxLength="60" />
+          <Property Name="cidade" Type="varchar" MaxLength="60" />
+          <Property Name="uf" Type="varchar" MaxLength="2" />
+          <Property Name="telefone" Type="varchar" MaxLength="11" />
+          <Property Name="email" Type="varchar" MaxLength="60" />
+          <Property Name="contato" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="contas_pagar">
+          <Key>
+            <PropertyRef Name="id_contaspagar" />
+          </Key>
+          <Property Name="id_contaspagar" Type="int" Nullable="false" />
+          <Property Name="id_fornecedor" Type="int" Nullable="false" />
+          <Property Name="id_planocontas" Type="int" Nullable="false" />
+          <Property Name="data_cadastro" Type="date" />
+          <Property Name="descricao_conta" Type="varchar" MaxLength="100" />
+          <Property Name="valor_conta" Type="varchar" MaxLength="45" />
+          <Property Name="data_vencimento" Type="date" />
+          <Property Name="status_conta" Type="varchar" MaxLength="15" />
+          <Property Name="observacao" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="contas_receber">
+          <Key>
+            <PropertyRef Name="idContas_Receber" />
+          </Key>
+          <Property Name="idContas_Receber" Type="int" Nullable="false" />
+          <Property Name="idPedido" Type="int" Nullable="false" />
+          <Property Name="id_planocontas" Type="int" Nullable="false" />
+          <Property Name="data_cadastro" Type="datetime" Precision="0" />
+          <Property Name="data_recebimento" Type="datetime" Precision="0" />
+          <Property Name="status" Type="varchar" MaxLength="15" />
+          <Property Name="forma_pagamento" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="dre">
+          <Key>
+            <PropertyRef Name="id_dre" />
+          </Key>
+          <Property Name="id_dre" Type="int" Nullable="false" />
+          <Property Name="nome_dre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="estoque_materiaprima">
+          <Key>
+            <PropertyRef Name="id_estoque_matprima" />
+          </Key>
+          <Property Name="id_estoque_matprima" Type="int" Nullable="false" />
+          <Property Name="id_matprima" Type="int" Nullable="false" />
+          <Property Name="id_planocontas" Type="int" Nullable="false" />
+          <Property Name="data_estocagem" Type="date" />
+          <Property Name="quant_minima" Type="int" />
+          <Property Name="quant_maxima" Type="int" />
+          <Property Name="quant_atual" Type="int" />
+        </EntityType>
+        <EntityType Name="estoque_produtoacabado">
+          <Key>
+            <PropertyRef Name="id_estoque_prodacab" />
+          </Key>
+          <Property Name="id_estoque_prodacab" Type="int" Nullable="false" />
+          <Property Name="id_produto" Type="int" Nullable="false" />
+          <Property Name="id_planocontas" Type="int" Nullable="false" />
+          <Property Name="data_fabricacao" Type="date" />
+          <Property Name="data_estocagem" Type="date" />
+          <Property Name="quant_minima" Type="int" />
+          <Property Name="quant_maxima" Type="int" />
+          <Property Name="quant_atual" Type="int" />
+        </EntityType>
+        <EntityType Name="fornece_materiaprima">
+          <Key>
+            <PropertyRef Name="id_fornecedor_materiaprima" />
+          </Key>
+          <Property Name="id_fornecedor" Type="int" Nullable="false" />
+          <Property Name="id_matprima" Type="int" Nullable="false" />
+          <Property Name="id_fornecedor_materiaprima" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="fornecedor">
+          <Key>
+            <PropertyRef Name="id_fornecedor" />
+          </Key>
+          <Property Name="id_fornecedor" Type="int" Nullable="false" />
+          <Property Name="cnpj" Type="varchar" MaxLength="19" />
+          <Property Name="inscricao_estadual" Type="varchar" MaxLength="11" />
+          <Property Name="endereco" Type="varchar" MaxLength="150" />
+          <Property Name="bairro" Type="varchar" MaxLength="60" />
+          <Property Name="cidade" Type="varchar" MaxLength="60" />
+          <Property Name="uf" Type="varchar" MaxLength="2" />
+          <Property Name="telefone" Type="varchar" MaxLength="11" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="item_pedido">
+          <Key>
+            <PropertyRef Name="key_item" />
+          </Key>
+          <Property Name="id_item_pedido" Type="int" Nullable="false" />
+          <Property Name="valor_unitario_item" Type="double" />
+          <Property Name="quantidade" Type="int" />
+          <Property Name="valor_total_item" Type="double" />
+          <Property Name="id_produto_fk" Type="int" Nullable="false" />
+          <Property Name="key_item" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="materia-prima">
+          <Key>
+            <PropertyRef Name="id_matprima" />
+          </Key>
+          <Property Name="id_matprima" Type="int" Nullable="false" />
+          <Property Name="descricao_matprima" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="outras_contas">
+          <Key>
+            <PropertyRef Name="id_conta" />
+          </Key>
+          <Property Name="id_conta" Type="int" Nullable="false" />
+          <Property Name="nome_conta" Type="varchar" MaxLength="30" />
+          <Property Name="descricao_conta" Type="varchar" MaxLength="150" />
+          <Property Name="data_cadastro" Type="date" />
+          <Property Name="Plano_Contas_id_planocontas" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pedido">
+          <Key>
+            <PropertyRef Name="idPedido" />
+          </Key>
+          <Property Name="idPedido" Type="int" Nullable="false" />
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="data_compra" Type="date" />
+          <Property Name="valor_total" Type="float" />
+          <Property Name="id_item_pedido_fk" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="plano_contas">
+          <Key>
+            <PropertyRef Name="id_planocontas" />
+          </Key>
+          <Property Name="id_planocontas" Type="int" Nullable="false" />
+          <Property Name="id_dre" Type="int" Nullable="false" />
+          <Property Name="codigo_planocontas" Type="varchar" MaxLength="25" />
+          <Property Name="descricao_planocontas" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="produto">
+          <Key>
+            <PropertyRef Name="id_produto" />
+          </Key>
+          <Property Name="id_produto" Type="int" Nullable="false" />
+          <Property Name="descricao_produto" Type="varchar" MaxLength="100" />
+          <Property Name="valor_unitario" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <Association Name="fk_Contas_Pagar_Conta_Movimentação1">
+          <End Role="plano_contas" Type="Self.plano_contas" Multiplicity="1" />
+          <End Role="contas_pagar" Type="Self.contas_pagar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="plano_contas">
+              <PropertyRef Name="id_planocontas" />
+            </Principal>
+            <Dependent Role="contas_pagar">
+              <PropertyRef Name="id_planocontas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Contas_Pagar_Fornecedor1">
+          <End Role="fornecedor" Type="Self.fornecedor" Multiplicity="1" />
+          <End Role="contas_pagar" Type="Self.contas_pagar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fornecedor">
+              <PropertyRef Name="id_fornecedor" />
+            </Principal>
+            <Dependent Role="contas_pagar">
+              <PropertyRef Name="id_fornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Contas_Receber_Conta_Movimentação1">
+          <End Role="plano_contas" Type="Self.plano_contas" Multiplicity="1" />
+          <End Role="contas_receber" Type="Self.contas_receber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="plano_contas">
+              <PropertyRef Name="id_planocontas" />
+            </Principal>
+            <Dependent Role="contas_receber">
+              <PropertyRef Name="id_planocontas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Contas_Receber_Pedido1">
+          <End Role="pedido" Type="Self.pedido" Multiplicity="1" />
+          <End Role="contas_receber" Type="Self.contas_receber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pedido">
+              <PropertyRef Name="idPedido" />
+            </Principal>
+            <Dependent Role="contas_receber">
+              <PropertyRef Name="idPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Estoque_MateriaPrima_Conta_Movimentação1">
+          <End Role="plano_contas" Type="Self.plano_contas" Multiplicity="1" />
+          <End Role="estoque_materiaprima" Type="Self.estoque_materiaprima" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="plano_contas">
+              <PropertyRef Name="id_planocontas" />
+            </Principal>
+            <Dependent Role="estoque_materiaprima">
+              <PropertyRef Name="id_planocontas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Estoque_MateriaPrima_Materia-Prima1">
+          <End Role="materia-prima" Type="Self.materia-prima" Multiplicity="1" />
+          <End Role="estoque_materiaprima" Type="Self.estoque_materiaprima" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="materia-prima">
+              <PropertyRef Name="id_matprima" />
+            </Principal>
+            <Dependent Role="estoque_materiaprima">
+              <PropertyRef Name="id_matprima" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Estoque_ProdutoAcabado_Conta_Movimentação1">
+          <End Role="plano_contas" Type="Self.plano_contas" Multiplicity="1" />
+          <End Role="estoque_produtoacabado" Type="Self.estoque_produtoacabado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="plano_contas">
+              <PropertyRef Name="id_planocontas" />
+            </Principal>
+            <Dependent Role="estoque_produtoacabado">
+              <PropertyRef Name="id_planocontas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Estoque_ProdutoAcabado_Produto1">
+          <End Role="produto" Type="Self.produto" Multiplicity="1" />
+          <End Role="estoque_produtoacabado" Type="Self.estoque_produtoacabado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="produto">
+              <PropertyRef Name="id_produto" />
+            </Principal>
+            <Dependent Role="estoque_produtoacabado">
+              <PropertyRef Name="id_produto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Fornecedor_has_Materia-Prima_Fornecedor1">
+          <End Role="fornecedor" Type="Self.fornecedor" Multiplicity="1" />
+          <End Role="fornece_materiaprima" Type="Self.fornece_materiaprima" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fornecedor">
+              <PropertyRef Name="id_fornecedor" />
+            </Principal>
+            <Dependent Role="fornece_materiaprima">
+              <PropertyRef Name="id_fornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Fornecedor_has_Materia-Prima_Materia-Prima1">
+          <End Role="materia-prima" Type="Self.materia-prima" Multiplicity="1" />
+          <End Role="fornece_materiaprima" Type="Self.fornece_materiaprima" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="materia-prima">
+              <PropertyRef Name="id_matprima" />
+            </Principal>
+            <Dependent Role="fornece_materiaprima">
+              <PropertyRef Name="id_matprima" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Outras_Contas_Plano_Contas1">
+          <End Role="plano_contas" Type="Self.plano_contas" Multiplicity="1" />
+          <End Role="outras_contas" Type="Self.outras_contas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="plano_contas">
+              <PropertyRef Name="id_planocontas" />
+            </Principal>
+            <Dependent Role="outras_contas">
+              <PropertyRef Name="Plano_Contas_id_planocontas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Pedido_Cliente1">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="pedido" Type="Self.pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="pedido">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Plano_Contas_DRE1">
+          <End Role="dre" Type="Self.dre" Multiplicity="1" />
+          <End Role="plano_contas" Type="Self.plano_contas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dre">
+              <PropertyRef Name="id_dre" />
+            </Principal>
+            <Dependent Role="plano_contas">
+              <PropertyRef Name="id_dre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_produto_fk">
+          <End Role="produto" Type="Self.produto" Multiplicity="1" />
+          <End Role="item_pedido" Type="Self.item_pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="produto">
+              <PropertyRef Name="id_produto" />
+            </Principal>
+            <Dependent Role="item_pedido">
+              <PropertyRef Name="id_produto_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="mydbModelStoreContainer">
+          <EntitySet Name="cliente" EntityType="Self.cliente" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="contas_pagar" EntityType="Self.contas_pagar" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="contas_receber" EntityType="Self.contas_receber" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="dre" EntityType="Self.dre" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="estoque_materiaprima" EntityType="Self.estoque_materiaprima" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="estoque_produtoacabado" EntityType="Self.estoque_produtoacabado" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="fornece_materiaprima" EntityType="Self.fornece_materiaprima" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="fornecedor" EntityType="Self.fornecedor" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="item_pedido" EntityType="Self.item_pedido" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="materia-prima" EntityType="Self.materia-prima" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="outras_contas" EntityType="Self.outras_contas" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="pedido" EntityType="Self.pedido" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="plano_contas" EntityType="Self.plano_contas" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="produto" EntityType="Self.produto" Schema="mydb" store:Type="Tables" />
+          <AssociationSet Name="fk_Contas_Pagar_Conta_Movimentação1" Association="Self.fk_Contas_Pagar_Conta_Movimentação1">
+            <End Role="plano_contas" EntitySet="plano_contas" />
+            <End Role="contas_pagar" EntitySet="contas_pagar" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Contas_Pagar_Fornecedor1" Association="Self.fk_Contas_Pagar_Fornecedor1">
+            <End Role="fornecedor" EntitySet="fornecedor" />
+            <End Role="contas_pagar" EntitySet="contas_pagar" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Contas_Receber_Conta_Movimentação1" Association="Self.fk_Contas_Receber_Conta_Movimentação1">
+            <End Role="plano_contas" EntitySet="plano_contas" />
+            <End Role="contas_receber" EntitySet="contas_receber" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Contas_Receber_Pedido1" Association="Self.fk_Contas_Receber_Pedido1">
+            <End Role="pedido" EntitySet="pedido" />
+            <End Role="contas_receber" EntitySet="contas_receber" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Estoque_MateriaPrima_Conta_Movimentação1" Association="Self.fk_Estoque_MateriaPrima_Conta_Movimentação1">
+            <End Role="plano_contas" EntitySet="plano_contas" />
+            <End Role="estoque_materiaprima" EntitySet="estoque_materiaprima" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Estoque_MateriaPrima_Materia-Prima1" Association="Self.fk_Estoque_MateriaPrima_Materia-Prima1">
+            <End Role="materia-prima" EntitySet="materia-prima" />
+            <End Role="estoque_materiaprima" EntitySet="estoque_materiaprima" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Estoque_ProdutoAcabado_Conta_Movimentação1" Association="Self.fk_Estoque_ProdutoAcabado_Conta_Movimentação1">
+            <End Role="plano_contas" EntitySet="plano_contas" />
+            <End Role="estoque_produtoacabado" EntitySet="estoque_produtoacabado" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Estoque_ProdutoAcabado_Produto1" Association="Self.fk_Estoque_ProdutoAcabado_Produto1">
+            <End Role="produto" EntitySet="produto" />
+            <End Role="estoque_produtoacabado" EntitySet="estoque_produtoacabado" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Fornecedor_has_Materia-Prima_Fornecedor1" Association="Self.fk_Fornecedor_has_Materia-Prima_Fornecedor1">
+            <End Role="fornecedor" EntitySet="fornecedor" />
+            <End Role="fornece_materiaprima" EntitySet="fornece_materiaprima" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Fornecedor_has_Materia-Prima_Materia-Prima1" Association="Self.fk_Fornecedor_has_Materia-Prima_Materia-Prima1">
+            <End Role="materia-prima" EntitySet="materia-prima" />
+            <End Role="fornece_materiaprima" EntitySet="fornece_materiaprima" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Outras_Contas_Plano_Contas1" Association="Self.fk_Outras_Contas_Plano_Contas1">
+            <End Role="plano_contas" EntitySet="plano_contas" />
+            <End Role="outras_contas" EntitySet="outras_contas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Pedido_Cliente1" Association="Self.fk_Pedido_Cliente1">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="pedido" EntitySet="pedido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Plano_Contas_DRE1" Association="Self.fk_Plano_Contas_DRE1">
+            <End Role="dre" EntitySet="dre" />
+            <End Role="plano_contas" EntitySet="plano_contas" />
+          </AssociationSet>
+          <AssociationSet Name="id_produto_fk" Association="Self.id_produto_fk">
+            <End Role="produto" EntitySet="produto" />
+            <End Role="item_pedido" EntitySet="item_pedido" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="mydbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="mydbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cliente" EntityType="mydbModel.cliente" />
+          <EntitySet Name="contas_pagar" EntityType="mydbModel.contas_pagar" />
+          <EntitySet Name="contas_receber" EntityType="mydbModel.contas_receber" />
+          <EntitySet Name="dre" EntityType="mydbModel.dre" />
+          <EntitySet Name="estoque_materiaprima" EntityType="mydbModel.estoque_materiaprima" />
+          <EntitySet Name="estoque_produtoacabado" EntityType="mydbModel.estoque_produtoacabado" />
+          <EntitySet Name="fornece_materiaprima" EntityType="mydbModel.fornece_materiaprima" />
+          <EntitySet Name="fornecedor" EntityType="mydbModel.fornecedor" />
+          <EntitySet Name="item_pedido" EntityType="mydbModel.item_pedido" />
+          <EntitySet Name="materia_prima" EntityType="mydbModel.materia_prima" />
+          <EntitySet Name="outras_contas" EntityType="mydbModel.outras_contas" />
+          <EntitySet Name="pedido" EntityType="mydbModel.pedido" />
+          <EntitySet Name="plano_contas" EntityType="mydbModel.plano_contas" />
+          <EntitySet Name="produto" EntityType="mydbModel.produto" />
+          <AssociationSet Name="fk_Pedido_Cliente1" Association="mydbModel.fk_Pedido_Cliente1">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="pedido" EntitySet="pedido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Contas_Pagar_Conta_Movimentação1" Association="mydbModel.fk_Contas_Pagar_Conta_Movimentação1">
+            <End Role="plano_contas" EntitySet="plano_contas" />
+            <End Role="contas_pagar" EntitySet="contas_pagar" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Contas_Pagar_Fornecedor1" Association="mydbModel.fk_Contas_Pagar_Fornecedor1">
+            <End Role="fornecedor" EntitySet="fornecedor" />
+            <End Role="contas_pagar" EntitySet="contas_pagar" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Contas_Receber_Conta_Movimentação1" Association="mydbModel.fk_Contas_Receber_Conta_Movimentação1">
+            <End Role="plano_contas" EntitySet="plano_contas" />
+            <End Role="contas_receber" EntitySet="contas_receber" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Contas_Receber_Pedido1" Association="mydbModel.fk_Contas_Receber_Pedido1">
+            <End Role="pedido" EntitySet="pedido" />
+            <End Role="contas_receber" EntitySet="contas_receber" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Plano_Contas_DRE1" Association="mydbModel.fk_Plano_Contas_DRE1">
+            <End Role="dre" EntitySet="dre" />
+            <End Role="plano_contas" EntitySet="plano_contas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Estoque_MateriaPrima_Conta_Movimentação1" Association="mydbModel.fk_Estoque_MateriaPrima_Conta_Movimentação1">
+            <End Role="plano_contas" EntitySet="plano_contas" />
+            <End Role="estoque_materiaprima" EntitySet="estoque_materiaprima" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Estoque_MateriaPrima_Materia_Prima1" Association="mydbModel.fk_Estoque_MateriaPrima_Materia_Prima1">
+            <End Role="materia_prima" EntitySet="materia_prima" />
+            <End Role="estoque_materiaprima" EntitySet="estoque_materiaprima" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Estoque_ProdutoAcabado_Conta_Movimentação1" Association="mydbModel.fk_Estoque_ProdutoAcabado_Conta_Movimentação1">
+            <End Role="plano_contas" EntitySet="plano_contas" />
+            <End Role="estoque_produtoacabado" EntitySet="estoque_produtoacabado" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Estoque_ProdutoAcabado_Produto1" Association="mydbModel.fk_Estoque_ProdutoAcabado_Produto1">
+            <End Role="produto" EntitySet="produto" />
+            <End Role="estoque_produtoacabado" EntitySet="estoque_produtoacabado" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Fornecedor_has_Materia_Prima_Fornecedor1" Association="mydbModel.fk_Fornecedor_has_Materia_Prima_Fornecedor1">
+            <End Role="fornecedor" EntitySet="fornecedor" />
+            <End Role="fornece_materiaprima" EntitySet="fornece_materiaprima" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Fornecedor_has_Materia_Prima_Materia_Prima1" Association="mydbModel.fk_Fornecedor_has_Materia_Prima_Materia_Prima1">
+            <End Role="materia_prima" EntitySet="materia_prima" />
+            <End Role="fornece_materiaprima" EntitySet="fornece_materiaprima" />
+          </AssociationSet>
+          <AssociationSet Name="id_produto_fk" Association="mydbModel.id_produto_fk">
+            <End Role="produto" EntitySet="produto" />
+            <End Role="item_pedido" EntitySet="item_pedido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Outras_Contas_Plano_Contas1" Association="mydbModel.fk_Outras_Contas_Plano_Contas1">
+            <End Role="plano_contas" EntitySet="plano_contas" />
+            <End Role="outras_contas" EntitySet="outras_contas" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="razaosocial" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cnpj" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="incricao_estadual" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="endereco" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="bairro" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="cidade" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="uf" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="telefone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="contato" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="pedido" Relationship="mydbModel.fk_Pedido_Cliente1" FromRole="cliente" ToRole="pedido" />
+        </EntityType>
+        <EntityType Name="contas_pagar">
+          <Key>
+            <PropertyRef Name="id_contaspagar" />
+          </Key>
+          <Property Name="id_contaspagar" Type="Int32" Nullable="false" />
+          <Property Name="id_fornecedor" Type="Int32" Nullable="false" />
+          <Property Name="id_planocontas" Type="Int32" Nullable="false" />
+          <Property Name="data_cadastro" Type="DateTime" />
+          <Property Name="descricao_conta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="valor_conta" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="data_vencimento" Type="DateTime" />
+          <Property Name="status_conta" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="observacao" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="plano_contas" Relationship="mydbModel.fk_Contas_Pagar_Conta_Movimentação1" FromRole="contas_pagar" ToRole="plano_contas" />
+          <NavigationProperty Name="fornecedor" Relationship="mydbModel.fk_Contas_Pagar_Fornecedor1" FromRole="contas_pagar" ToRole="fornecedor" />
+        </EntityType>
+        <EntityType Name="contas_receber">
+          <Key>
+            <PropertyRef Name="idContas_Receber" />
+          </Key>
+          <Property Name="idContas_Receber" Type="Int32" Nullable="false" />
+          <Property Name="idPedido" Type="Int32" Nullable="false" />
+          <Property Name="id_planocontas" Type="Int32" Nullable="false" />
+          <Property Name="data_cadastro" Type="DateTime" />
+          <Property Name="data_recebimento" Type="DateTime" />
+          <Property Name="status" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="forma_pagamento" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="plano_contas" Relationship="mydbModel.fk_Contas_Receber_Conta_Movimentação1" FromRole="contas_receber" ToRole="plano_contas" />
+          <NavigationProperty Name="pedido" Relationship="mydbModel.fk_Contas_Receber_Pedido1" FromRole="contas_receber" ToRole="pedido" />
+        </EntityType>
+        <EntityType Name="dre">
+          <Key>
+            <PropertyRef Name="id_dre" />
+          </Key>
+          <Property Name="id_dre" Type="Int32" Nullable="false" />
+          <Property Name="nome_dre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="plano_contas" Relationship="mydbModel.fk_Plano_Contas_DRE1" FromRole="dre" ToRole="plano_contas" />
+        </EntityType>
+        <EntityType Name="estoque_materiaprima">
+          <Key>
+            <PropertyRef Name="id_estoque_matprima" />
+          </Key>
+          <Property Name="id_estoque_matprima" Type="Int32" Nullable="false" />
+          <Property Name="id_matprima" Type="Int32" Nullable="false" />
+          <Property Name="id_planocontas" Type="Int32" Nullable="false" />
+          <Property Name="data_estocagem" Type="DateTime" />
+          <Property Name="quant_minima" Type="Int32" />
+          <Property Name="quant_maxima" Type="Int32" />
+          <Property Name="quant_atual" Type="Int32" />
+          <NavigationProperty Name="plano_contas" Relationship="mydbModel.fk_Estoque_MateriaPrima_Conta_Movimentação1" FromRole="estoque_materiaprima" ToRole="plano_contas" />
+          <NavigationProperty Name="materia_prima" Relationship="mydbModel.fk_Estoque_MateriaPrima_Materia_Prima1" FromRole="estoque_materiaprima" ToRole="materia_prima" />
+        </EntityType>
+        <EntityType Name="estoque_produtoacabado">
+          <Key>
+            <PropertyRef Name="id_estoque_prodacab" />
+          </Key>
+          <Property Name="id_estoque_prodacab" Type="Int32" Nullable="false" />
+          <Property Name="id_produto" Type="Int32" Nullable="false" />
+          <Property Name="id_planocontas" Type="Int32" Nullable="false" />
+          <Property Name="data_fabricacao" Type="DateTime" />
+          <Property Name="data_estocagem" Type="DateTime" />
+          <Property Name="quant_minima" Type="Int32" />
+          <Property Name="quant_maxima" Type="Int32" />
+          <Property Name="quant_atual" Type="Int32" />
+          <NavigationProperty Name="plano_contas" Relationship="mydbModel.fk_Estoque_ProdutoAcabado_Conta_Movimentação1" FromRole="estoque_produtoacabado" ToRole="plano_contas" />
+          <NavigationProperty Name="produto" Relationship="mydbModel.fk_Estoque_ProdutoAcabado_Produto1" FromRole="estoque_produtoacabado" ToRole="produto" />
+        </EntityType>
+        <EntityType Name="fornece_materiaprima">
+          <Key>
+            <PropertyRef Name="id_fornecedor_materiaprima" />
+          </Key>
+          <Property Name="id_fornecedor" Type="Int32" Nullable="false" />
+          <Property Name="id_matprima" Type="Int32" Nullable="false" />
+          <Property Name="id_fornecedor_materiaprima" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="fornecedor" Relationship="mydbModel.fk_Fornecedor_has_Materia_Prima_Fornecedor1" FromRole="fornece_materiaprima" ToRole="fornecedor" />
+          <NavigationProperty Name="materia_prima" Relationship="mydbModel.fk_Fornecedor_has_Materia_Prima_Materia_Prima1" FromRole="fornece_materiaprima" ToRole="materia_prima" />
+        </EntityType>
+        <EntityType Name="fornecedor">
+          <Key>
+            <PropertyRef Name="id_fornecedor" />
+          </Key>
+          <Property Name="id_fornecedor" Type="Int32" Nullable="false" />
+          <Property Name="cnpj" Type="String" MaxLength="19" FixedLength="false" Unicode="false" />
+          <Property Name="inscricao_estadual" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="endereco" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="bairro" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="cidade" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="uf" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="telefone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="contas_pagar" Relationship="mydbModel.fk_Contas_Pagar_Fornecedor1" FromRole="fornecedor" ToRole="contas_pagar" />
+          <NavigationProperty Name="fornece_materiaprima" Relationship="mydbModel.fk_Fornecedor_has_Materia_Prima_Fornecedor1" FromRole="fornecedor" ToRole="fornece_materiaprima" />
+        </EntityType>
+        <EntityType Name="item_pedido">
+          <Key>
+            <PropertyRef Name="key_item" />
+          </Key>
+          <Property Name="id_item_pedido" Type="Int32" Nullable="false" />
+          <Property Name="valor_unitario_item" Type="Double" />
+          <Property Name="quantidade" Type="Int32" />
+          <Property Name="valor_total_item" Type="Double" />
+          <Property Name="id_produto_fk" Type="Int32" Nullable="false" />
+          <Property Name="key_item" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="produto" Relationship="mydbModel.id_produto_fk" FromRole="item_pedido" ToRole="produto" />
+        </EntityType>
+        <EntityType Name="materia_prima">
+          <Key>
+            <PropertyRef Name="id_matprima" />
+          </Key>
+          <Property Name="id_matprima" Type="Int32" Nullable="false" />
+          <Property Name="descricao_matprima" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="estoque_materiaprima" Relationship="mydbModel.fk_Estoque_MateriaPrima_Materia_Prima1" FromRole="materia_prima" ToRole="estoque_materiaprima" />
+          <NavigationProperty Name="fornece_materiaprima" Relationship="mydbModel.fk_Fornecedor_has_Materia_Prima_Materia_Prima1" FromRole="materia_prima" ToRole="fornece_materiaprima" />
+        </EntityType>
+        <EntityType Name="outras_contas">
+          <Key>
+            <PropertyRef Name="id_conta" />
+          </Key>
+          <Property Name="id_conta" Type="Int32" Nullable="false" />
+          <Property Name="nome_conta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="descricao_conta" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="data_cadastro" Type="DateTime" />
+          <Property Name="Plano_Contas_id_planocontas" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="plano_contas" Relationship="mydbModel.fk_Outras_Contas_Plano_Contas1" FromRole="outras_contas" ToRole="plano_contas" />
+        </EntityType>
+        <EntityType Name="pedido">
+          <Key>
+            <PropertyRef Name="idPedido" />
+          </Key>
+          <Property Name="idPedido" Type="Int32" Nullable="false" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="data_compra" Type="DateTime" />
+          <Property Name="valor_total" Type="Single" />
+          <Property Name="id_item_pedido_fk" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="cliente" Relationship="mydbModel.fk_Pedido_Cliente1" FromRole="pedido" ToRole="cliente" />
+          <NavigationProperty Name="contas_receber" Relationship="mydbModel.fk_Contas_Receber_Pedido1" FromRole="pedido" ToRole="contas_receber" />
+        </EntityType>
+        <EntityType Name="plano_contas">
+          <Key>
+            <PropertyRef Name="id_planocontas" />
+          </Key>
+          <Property Name="id_planocontas" Type="Int32" Nullable="false" />
+          <Property Name="id_dre" Type="Int32" Nullable="false" />
+          <Property Name="codigo_planocontas" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="descricao_planocontas" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="contas_pagar" Relationship="mydbModel.fk_Contas_Pagar_Conta_Movimentação1" FromRole="plano_contas" ToRole="contas_pagar" />
+          <NavigationProperty Name="contas_receber" Relationship="mydbModel.fk_Contas_Receber_Conta_Movimentação1" FromRole="plano_contas" ToRole="contas_receber" />
+          <NavigationProperty Name="dre" Relationship="mydbModel.fk_Plano_Contas_DRE1" FromRole="plano_contas" ToRole="dre" />
+          <NavigationProperty Name="estoque_materiaprima" Relationship="mydbModel.fk_Estoque_MateriaPrima_Conta_Movimentação1" FromRole="plano_contas" ToRole="estoque_materiaprima" />
+          <NavigationProperty Name="estoque_produtoacabado" Relationship="mydbModel.fk_Estoque_ProdutoAcabado_Conta_Movimentação1" FromRole="plano_contas" ToRole="estoque_produtoacabado" />
+          <NavigationProperty Name="outras_contas" Relationship="mydbModel.fk_Outras_Contas_Plano_Contas1" FromRole="plano_contas" ToRole="outras_contas" />
+        </EntityType>
+        <EntityType Name="produto">
+          <Key>
+            <PropertyRef Name="id_produto" />
+          </Key>
+          <Property Name="id_produto" Type="Int32" Nullable="false" />
+          <Property Name="descricao_produto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="valor_unitario" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="estoque_produtoacabado" Relationship="mydbModel.fk_Estoque_ProdutoAcabado_Produto1" FromRole="produto" ToRole="estoque_produtoacabado" />
+          <NavigationProperty Name="item_pedido" Relationship="mydbModel.id_produto_fk" FromRole="produto" ToRole="item_pedido" />
+        </EntityType>
+        <Association Name="fk_Pedido_Cliente1">
+          <End Type="mydbModel.cliente" Role="cliente" Multiplicity="1" />
+          <End Type="mydbModel.pedido" Role="pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="pedido">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Contas_Pagar_Conta_Movimentação1">
+          <End Type="mydbModel.plano_contas" Role="plano_contas" Multiplicity="1" />
+          <End Type="mydbModel.contas_pagar" Role="contas_pagar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="plano_contas">
+              <PropertyRef Name="id_planocontas" />
+            </Principal>
+            <Dependent Role="contas_pagar">
+              <PropertyRef Name="id_planocontas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Contas_Pagar_Fornecedor1">
+          <End Type="mydbModel.fornecedor" Role="fornecedor" Multiplicity="1" />
+          <End Type="mydbModel.contas_pagar" Role="contas_pagar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fornecedor">
+              <PropertyRef Name="id_fornecedor" />
+            </Principal>
+            <Dependent Role="contas_pagar">
+              <PropertyRef Name="id_fornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Contas_Receber_Conta_Movimentação1">
+          <End Type="mydbModel.plano_contas" Role="plano_contas" Multiplicity="1" />
+          <End Type="mydbModel.contas_receber" Role="contas_receber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="plano_contas">
+              <PropertyRef Name="id_planocontas" />
+            </Principal>
+            <Dependent Role="contas_receber">
+              <PropertyRef Name="id_planocontas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Contas_Receber_Pedido1">
+          <End Type="mydbModel.pedido" Role="pedido" Multiplicity="1" />
+          <End Type="mydbModel.contas_receber" Role="contas_receber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pedido">
+              <PropertyRef Name="idPedido" />
+            </Principal>
+            <Dependent Role="contas_receber">
+              <PropertyRef Name="idPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Plano_Contas_DRE1">
+          <End Type="mydbModel.dre" Role="dre" Multiplicity="1" />
+          <End Type="mydbModel.plano_contas" Role="plano_contas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dre">
+              <PropertyRef Name="id_dre" />
+            </Principal>
+            <Dependent Role="plano_contas">
+              <PropertyRef Name="id_dre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Estoque_MateriaPrima_Conta_Movimentação1">
+          <End Type="mydbModel.plano_contas" Role="plano_contas" Multiplicity="1" />
+          <End Type="mydbModel.estoque_materiaprima" Role="estoque_materiaprima" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="plano_contas">
+              <PropertyRef Name="id_planocontas" />
+            </Principal>
+            <Dependent Role="estoque_materiaprima">
+              <PropertyRef Name="id_planocontas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Estoque_MateriaPrima_Materia_Prima1">
+          <End Type="mydbModel.materia_prima" Role="materia_prima" Multiplicity="1" />
+          <End Type="mydbModel.estoque_materiaprima" Role="estoque_materiaprima" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="materia_prima">
+              <PropertyRef Name="id_matprima" />
+            </Principal>
+            <Dependent Role="estoque_materiaprima">
+              <PropertyRef Name="id_matprima" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Estoque_ProdutoAcabado_Conta_Movimentação1">
+          <End Type="mydbModel.plano_contas" Role="plano_contas" Multiplicity="1" />
+          <End Type="mydbModel.estoque_produtoacabado" Role="estoque_produtoacabado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="plano_contas">
+              <PropertyRef Name="id_planocontas" />
+            </Principal>
+            <Dependent Role="estoque_produtoacabado">
+              <PropertyRef Name="id_planocontas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Estoque_ProdutoAcabado_Produto1">
+          <End Type="mydbModel.produto" Role="produto" Multiplicity="1" />
+          <End Type="mydbModel.estoque_produtoacabado" Role="estoque_produtoacabado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="produto">
+              <PropertyRef Name="id_produto" />
+            </Principal>
+            <Dependent Role="estoque_produtoacabado">
+              <PropertyRef Name="id_produto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Fornecedor_has_Materia_Prima_Fornecedor1">
+          <End Type="mydbModel.fornecedor" Role="fornecedor" Multiplicity="1" />
+          <End Type="mydbModel.fornece_materiaprima" Role="fornece_materiaprima" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fornecedor">
+              <PropertyRef Name="id_fornecedor" />
+            </Principal>
+            <Dependent Role="fornece_materiaprima">
+              <PropertyRef Name="id_fornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Fornecedor_has_Materia_Prima_Materia_Prima1">
+          <End Type="mydbModel.materia_prima" Role="materia_prima" Multiplicity="1" />
+          <End Type="mydbModel.fornece_materiaprima" Role="fornece_materiaprima" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="materia_prima">
+              <PropertyRef Name="id_matprima" />
+            </Principal>
+            <Dependent Role="fornece_materiaprima">
+              <PropertyRef Name="id_matprima" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_produto_fk">
+          <End Type="mydbModel.produto" Role="produto" Multiplicity="1" />
+          <End Type="mydbModel.item_pedido" Role="item_pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="produto">
+              <PropertyRef Name="id_produto" />
+            </Principal>
+            <Dependent Role="item_pedido">
+              <PropertyRef Name="id_produto_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Outras_Contas_Plano_Contas1">
+          <End Type="mydbModel.plano_contas" Role="plano_contas" Multiplicity="1" />
+          <End Type="mydbModel.outras_contas" Role="outras_contas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="plano_contas">
+              <PropertyRef Name="id_planocontas" />
+            </Principal>
+            <Dependent Role="outras_contas">
+              <PropertyRef Name="Plano_Contas_id_planocontas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="mydbModelStoreContainer" CdmEntityContainer="mydbEntities">
+          <EntitySetMapping Name="cliente">
+            <EntityTypeMapping TypeName="mydbModel.cliente">
+              <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="contato" ColumnName="contato" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefone" ColumnName="telefone" />
+                <ScalarProperty Name="uf" ColumnName="uf" />
+                <ScalarProperty Name="cidade" ColumnName="cidade" />
+                <ScalarProperty Name="bairro" ColumnName="bairro" />
+                <ScalarProperty Name="endereco" ColumnName="endereco" />
+                <ScalarProperty Name="incricao_estadual" ColumnName="incricao_estadual" />
+                <ScalarProperty Name="cnpj" ColumnName="cnpj" />
+                <ScalarProperty Name="razaosocial" ColumnName="razaosocial" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contas_pagar">
+            <EntityTypeMapping TypeName="mydbModel.contas_pagar">
+              <MappingFragment StoreEntitySet="contas_pagar">
+                <ScalarProperty Name="observacao" ColumnName="observacao" />
+                <ScalarProperty Name="status_conta" ColumnName="status_conta" />
+                <ScalarProperty Name="data_vencimento" ColumnName="data_vencimento" />
+                <ScalarProperty Name="valor_conta" ColumnName="valor_conta" />
+                <ScalarProperty Name="descricao_conta" ColumnName="descricao_conta" />
+                <ScalarProperty Name="data_cadastro" ColumnName="data_cadastro" />
+                <ScalarProperty Name="id_planocontas" ColumnName="id_planocontas" />
+                <ScalarProperty Name="id_fornecedor" ColumnName="id_fornecedor" />
+                <ScalarProperty Name="id_contaspagar" ColumnName="id_contaspagar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contas_receber">
+            <EntityTypeMapping TypeName="mydbModel.contas_receber">
+              <MappingFragment StoreEntitySet="contas_receber">
+                <ScalarProperty Name="forma_pagamento" ColumnName="forma_pagamento" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="data_recebimento" ColumnName="data_recebimento" />
+                <ScalarProperty Name="data_cadastro" ColumnName="data_cadastro" />
+                <ScalarProperty Name="id_planocontas" ColumnName="id_planocontas" />
+                <ScalarProperty Name="idPedido" ColumnName="idPedido" />
+                <ScalarProperty Name="idContas_Receber" ColumnName="idContas_Receber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dre">
+            <EntityTypeMapping TypeName="mydbModel.dre">
+              <MappingFragment StoreEntitySet="dre">
+                <ScalarProperty Name="nome_dre" ColumnName="nome_dre" />
+                <ScalarProperty Name="id_dre" ColumnName="id_dre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estoque_materiaprima">
+            <EntityTypeMapping TypeName="mydbModel.estoque_materiaprima">
+              <MappingFragment StoreEntitySet="estoque_materiaprima">
+                <ScalarProperty Name="quant_atual" ColumnName="quant_atual" />
+                <ScalarProperty Name="quant_maxima" ColumnName="quant_maxima" />
+                <ScalarProperty Name="quant_minima" ColumnName="quant_minima" />
+                <ScalarProperty Name="data_estocagem" ColumnName="data_estocagem" />
+                <ScalarProperty Name="id_planocontas" ColumnName="id_planocontas" />
+                <ScalarProperty Name="id_matprima" ColumnName="id_matprima" />
+                <ScalarProperty Name="id_estoque_matprima" ColumnName="id_estoque_matprima" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estoque_produtoacabado">
+            <EntityTypeMapping TypeName="mydbModel.estoque_produtoacabado">
+              <MappingFragment StoreEntitySet="estoque_produtoacabado">
+                <ScalarProperty Name="quant_atual" ColumnName="quant_atual" />
+                <ScalarProperty Name="quant_maxima" ColumnName="quant_maxima" />
+                <ScalarProperty Name="quant_minima" ColumnName="quant_minima" />
+                <ScalarProperty Name="data_estocagem" ColumnName="data_estocagem" />
+                <ScalarProperty Name="data_fabricacao" ColumnName="data_fabricacao" />
+                <ScalarProperty Name="id_planocontas" ColumnName="id_planocontas" />
+                <ScalarProperty Name="id_produto" ColumnName="id_produto" />
+                <ScalarProperty Name="id_estoque_prodacab" ColumnName="id_estoque_prodacab" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fornece_materiaprima">
+            <EntityTypeMapping TypeName="mydbModel.fornece_materiaprima">
+              <MappingFragment StoreEntitySet="fornece_materiaprima">
+                <ScalarProperty Name="id_fornecedor_materiaprima" ColumnName="id_fornecedor_materiaprima" />
+                <ScalarProperty Name="id_matprima" ColumnName="id_matprima" />
+                <ScalarProperty Name="id_fornecedor" ColumnName="id_fornecedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fornecedor">
+            <EntityTypeMapping TypeName="mydbModel.fornecedor">
+              <MappingFragment StoreEntitySet="fornecedor">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefone" ColumnName="telefone" />
+                <ScalarProperty Name="uf" ColumnName="uf" />
+                <ScalarProperty Name="cidade" ColumnName="cidade" />
+                <ScalarProperty Name="bairro" ColumnName="bairro" />
+                <ScalarProperty Name="endereco" ColumnName="endereco" />
+                <ScalarProperty Name="inscricao_estadual" ColumnName="inscricao_estadual" />
+                <ScalarProperty Name="cnpj" ColumnName="cnpj" />
+                <ScalarProperty Name="id_fornecedor" ColumnName="id_fornecedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="item_pedido">
+            <EntityTypeMapping TypeName="mydbModel.item_pedido">
+              <MappingFragment StoreEntitySet="item_pedido">
+                <ScalarProperty Name="key_item" ColumnName="key_item" />
+                <ScalarProperty Name="id_produto_fk" ColumnName="id_produto_fk" />
+                <ScalarProperty Name="valor_total_item" ColumnName="valor_total_item" />
+                <ScalarProperty Name="quantidade" ColumnName="quantidade" />
+                <ScalarProperty Name="valor_unitario_item" ColumnName="valor_unitario_item" />
+                <ScalarProperty Name="id_item_pedido" ColumnName="id_item_pedido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="materia_prima">
+            <EntityTypeMapping TypeName="mydbModel.materia_prima">
+              <MappingFragment StoreEntitySet="materia-prima">
+                <ScalarProperty Name="descricao_matprima" ColumnName="descricao_matprima" />
+                <ScalarProperty Name="id_matprima" ColumnName="id_matprima" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="outras_contas">
+            <EntityTypeMapping TypeName="mydbModel.outras_contas">
+              <MappingFragment StoreEntitySet="outras_contas">
+                <ScalarProperty Name="Plano_Contas_id_planocontas" ColumnName="Plano_Contas_id_planocontas" />
+                <ScalarProperty Name="data_cadastro" ColumnName="data_cadastro" />
+                <ScalarProperty Name="descricao_conta" ColumnName="descricao_conta" />
+                <ScalarProperty Name="nome_conta" ColumnName="nome_conta" />
+                <ScalarProperty Name="id_conta" ColumnName="id_conta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pedido">
+            <EntityTypeMapping TypeName="mydbModel.pedido">
+              <MappingFragment StoreEntitySet="pedido">
+                <ScalarProperty Name="id_item_pedido_fk" ColumnName="id_item_pedido_fk" />
+                <ScalarProperty Name="valor_total" ColumnName="valor_total" />
+                <ScalarProperty Name="data_compra" ColumnName="data_compra" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idPedido" ColumnName="idPedido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="plano_contas">
+            <EntityTypeMapping TypeName="mydbModel.plano_contas">
+              <MappingFragment StoreEntitySet="plano_contas">
+                <ScalarProperty Name="descricao_planocontas" ColumnName="descricao_planocontas" />
+                <ScalarProperty Name="codigo_planocontas" ColumnName="codigo_planocontas" />
+                <ScalarProperty Name="id_dre" ColumnName="id_dre" />
+                <ScalarProperty Name="id_planocontas" ColumnName="id_planocontas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="produto">
+            <EntityTypeMapping TypeName="mydbModel.produto">
+              <MappingFragment StoreEntitySet="produto">
+                <ScalarProperty Name="valor_unitario" ColumnName="valor_unitario" />
+                <ScalarProperty Name="descricao_produto" ColumnName="descricao_produto" />
+                <ScalarProperty Name="id_produto" ColumnName="id_produto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

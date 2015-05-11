@@ -1,0 +1,26 @@
+﻿@model Fatec.AAP4.Web.Models.materia_prima
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>materia_prima</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.descricao_matprima)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descricao_matprima)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_matprima }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

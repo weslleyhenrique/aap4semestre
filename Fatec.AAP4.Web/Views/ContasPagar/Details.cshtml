@@ -1,0 +1,82 @@
+﻿@model Fatec.AAP4.Web.Models.contas_pagar
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>contas_pagar</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.data_cadastro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_cadastro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descricao_conta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descricao_conta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.valor_conta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.valor_conta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data_vencimento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_vencimento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status_conta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status_conta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.observacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.observacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.plano_contas.codigo_planocontas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.plano_contas.codigo_planocontas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fornecedor.cnpj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fornecedor.cnpj)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_contaspagar }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

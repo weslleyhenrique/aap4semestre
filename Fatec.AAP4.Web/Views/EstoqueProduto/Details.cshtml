@@ -1,0 +1,74 @@
+﻿@model Fatec.AAP4.Web.Models.estoque_produtoacabado
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>estoque_produtoacabado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.data_fabricacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_fabricacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data_estocagem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_estocagem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quant_minima)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quant_minima)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quant_maxima)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quant_maxima)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quant_atual)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quant_atual)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.plano_contas.codigo_planocontas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.plano_contas.codigo_planocontas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.produto.descricao_produto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.produto.descricao_produto)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_estoque_prodacab }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

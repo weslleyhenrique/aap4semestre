@@ -1,0 +1,26 @@
+﻿@model Fatec.AAP4.Web.Models.dre
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>dre</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nome_dre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome_dre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_dre }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

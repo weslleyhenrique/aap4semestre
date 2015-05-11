@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Fatec.AAP4.Web.Models.outras_contas>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Incluir", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nome_conta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descricao_conta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.data_cadastro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.plano_contas.codigo_planocontas)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nome_conta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descricao_conta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.data_cadastro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.plano_contas.codigo_planocontas)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_conta }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.id_conta }) |
+            @Html.ActionLink("Deletar", "Delete", new { id=item.id_conta })
+        </td>
+    </tr>
+}
+
+</table>

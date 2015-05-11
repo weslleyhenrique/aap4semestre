@@ -1,0 +1,42 @@
+﻿@model Fatec.AAP4.Web.Models.plano_contas
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>plano_contas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.codigo_planocontas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codigo_planocontas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descricao_planocontas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descricao_planocontas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dre.nome_dre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dre.nome_dre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_planocontas }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
