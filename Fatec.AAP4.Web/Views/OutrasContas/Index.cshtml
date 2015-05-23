@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Incluir", "Create")
+    @Html.ActionLink("Incluir", "Create", null, new { @class = "btn btn-primary btn-sm" }) <br/>
 </p>
 <table class="table">
     <tr>
@@ -41,9 +41,9 @@
             @Html.DisplayFor(modelItem => item.plano_contas.codigo_planocontas)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.id_conta }) |
-            @Html.ActionLink("Detalhes", "Details", new { id=item.id_conta }) |
-            @Html.ActionLink("Deletar", "Delete", new { id=item.id_conta })
+            @Html.ActionLink("Editar", "Edit", new { id = item.id_conta }, new { @class = "btn btn-warning btn-sm" }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.id_conta }, new { @class = "btn btn-success btn-sm" }) |
+            @Html.ActionLink("Deletar", "Delete", new { id = item.id_conta }, new { @class = "btn btn-danger btn-sm" })
         </td>
     </tr>
 }

@@ -7,33 +7,33 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Incluir", "Create")
+    @Html.ActionLink("Incluir", "Create", null, new { @class = "btn btn-primary btn-sm" }) <br/>
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.cnpj)
+            CNPJ
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.inscricao_estadual)
+            Inscrição Estadual
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.endereco)
+            Endereço
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.bairro)
+            Bairro
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.cidade)
+            Cidade
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.uf)
+            UF
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.telefone)
+            Telefone
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.email)
+            Email
         </th>
         <th></th>
     </tr>
@@ -65,9 +65,9 @@
             @Html.DisplayFor(modelItem => item.email)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.id_fornecedor }) |
-            @Html.ActionLink("Detalhes", "Details", new { id=item.id_fornecedor }) |
-            @Html.ActionLink("Deletar", "Delete", new { id=item.id_fornecedor })
+            @Html.ActionLink("Editar", "Edit", new { id = item.id_fornecedor }, new { @class = "btn btn-warning btn-sm" }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.id_fornecedor }, new { @class = "btn btn-success btn-sm" }) |
+            @Html.ActionLink("Deletar", "Delete", new { id = item.id_fornecedor }, new { @class = "btn btn-danger btn-sm" })
         </td>
     </tr>
 }

@@ -4,36 +4,57 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Incluir", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.descricao_produto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.valor_unitario)
-        </th>
-        <th></th>
-    </tr>
+<div class="panel panel-default">
+    <div class="panel-heading">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.descricao_produto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.valor_unitario)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.id_produto }) |
-            @Html.ActionLink("Detalhes", "Details", new { id=item.id_produto }) |
-            @Html.ActionLink("Deletar", "Delete", new { id=item.id_produto })
-        </td>
-    </tr>
-}
+        <h2>Cadastro de produtos</h2>
+    </div>
 
-</table>
+    <div class="panel-body">
+
+        @*@Html.ActionLink("Incluir", "Create")*@
+
+        @Html.ActionLink("Incluir", "Create", null, new { @class = "btn btn-primary btn-sm" })
+        <br />
+
+        <table class="table">
+            <tr>
+                <th>
+                    Código
+                </th>
+                <th>
+                    Descrição
+                </th>
+                <th>
+                    Preço Unitário
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id_produto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.descricao_produto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.valor_unitario)
+                    </td>
+                    <td>
+
+                        @Html.ActionLink("Editar", "Edit", new { id = item.id_produto }, new { @class = "btn btn-warning btn-sm" }) |
+                        @Html.ActionLink("Detalhes", "Details", new { id = item.id_produto }, new { @class = "btn btn-success btn-sm" }) |
+                        @Html.ActionLink("Deletar", "Delete", new { id = item.id_produto }, new { @class = "btn btn-danger btn-sm" })
+
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

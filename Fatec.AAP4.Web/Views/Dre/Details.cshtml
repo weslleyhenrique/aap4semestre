@@ -21,6 +21,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.id_dre }) |
-    @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Editar", "Edit", new { id = Model.id_dre }, new { @class = "btn btn-warning btn-sm" }) |
+        @Html.ActionLink("Voltar", "Index", null,new { @class = "btn btn-default btn-sm" })
 </p>

@@ -9,37 +9,65 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-static-top ">
+    <div class="navbar navbar-inverse  navbar-fixed-top ">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
                 @Html.ActionLink("ERP AAP4", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
+
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Clientes"         , "Index",   "Clientes")</li>
-                    <li>@Html.ActionLink("ContasPagar"      , "Index",   "ContasPagar")</li>
-                    <li>@Html.ActionLink("ContasReceber"    , "Index",   "ContasReceber")</li>
-                    <li>@Html.ActionLink("Dre"              , "Index",   "Dre")</li>
-                    <li>@Html.ActionLink("EstoqueMateria"  , "Index",   "EstoqueMateria")</li>
-                    <li>@Html.ActionLink("EstoqueProduto"   , "Index",   "EstoqueProduto")</li>
-                    <li>@Html.ActionLink("Fornecedores"     , "Index",   "Fornecedores")</li>
-                    <li>@Html.ActionLink("ForneceMaterias"  , "Index",   "ForneceMaterias")</li>
-                    <li>@Html.ActionLink("ItensPedido"      , "Index",   "ItensPedido")</li>
-                    <li>@Html.ActionLink("MateriasPrima"    , "Index",   "MateriasPrima")</li>
-                    <li>@Html.ActionLink("OutrasContas"     , "Index",   "OutrasContas")</li>
-                    <li>@Html.ActionLink("Pedidos"          , "Index",   "Pedidos")</li>
-                    <li>@Html.ActionLink("PlanoContas"      , "Index",   "PlanoContas")</li>
-                    <li>@Html.ActionLink("Produtos"         , "Index",   "Produtos")</li>
-                    @*<li>@Html.ActionLink("About"            , "About", "About")</li>
-                    <li>@Html.ActionLink("Contact"          , "Contact", "Contact")</li>*@
+
+                <ul class="nav navbar-nav navbar-btn">
+                    
+                    <li class="btn-group dropdown">
+                        <button type="button" class="btn btn-lg btn-info dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Vendas <span class="caret" />
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Clientes", "Index", "Clientes")</li>
+                            <li>@Html.ActionLink("Produtos", "Index", "Produtos")</li>
+                            <li>@Html.ActionLink("Consultar Vendas", "Index", "Pedidos")</li>
+                            <li>@Html.ActionLink("Criar Pedido", "Index", "ItensPedido")</li>
+                        </ul>
+                        |
+                    </li>
+
+
+                    <li class="btn-group dropdown">
+                        <button type="button" class="btn btn-lg btn-warning dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-th" aria-hidden="true"></span> Estoque <span class="caret" />
+                        </button>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("EstoqueMateria", "Index", "EstoqueMateria")</li>
+                            <li>@Html.ActionLink("EstoqueProduto", "Index", "EstoqueProduto")</li>
+                            <li>@Html.ActionLink("Fornecedores", "Index", "Fornecedores")</li>
+                            <li>@Html.ActionLink("ForneceMaterias", "Index", "ForneceMaterias")</li>
+                            <li>@Html.ActionLink("MateriasPrima", "Index", "MateriasPrima")</li>
+                        </ul>
+                        |
+                    </li>
+
+                    <li class="btn-group dropdown">
+                        <button type="button" class="btn btn-lg btn-success dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> Financeiro <span class="caret" />
+                        </button>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("ContasPagar", "Index", "ContasPagar")</li>
+                            <li>@Html.ActionLink("ContasReceber", "Index", "ContasReceber")</li>
+                            <li>@Html.ActionLink("OutrasContas", "Index", "OutrasContas")</li>
+                            <li>@Html.ActionLink("PlanoContas", "Index", "PlanoContas")</li>
+                            <li>@Html.ActionLink("Dre", "Index", "Dre")</li>
+                        </ul>
+                    </li>
+
                 </ul>
-                @*@Html.Partial("_LoginPartial")*@
-            </div>
+
+                    @*@Html.Partial("_LoginPartial")*@
+
+</div>
+
         </div>
     </div>
     <div class="container body-content">

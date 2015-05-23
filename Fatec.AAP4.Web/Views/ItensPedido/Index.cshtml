@@ -4,15 +4,24 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="panel panel-default">
+    <div class="panel-heading">
+
+        <h2>Pedidos</h2>
+
+        <h3>Index</h3>
+
+    </div>
+
+<div class="panel-body">
 
 <p>
-    @Html.ActionLink("Incluir", "Create")
+    @Html.ActionLink("Incluir", "Create", null, new { @class = "btn btn-primary btn-sm" }) <br/>
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.id_item_pedido)
+            Código pedido
         </th>
         <th>
             @Html.DisplayNameFor(model => model.valor_unitario_item)
@@ -47,11 +56,15 @@
             @Html.DisplayFor(modelItem => item.produto.descricao_produto)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.key_item }) |
-            @Html.ActionLink("Detalhes", "Details", new { id=item.key_item }) |
-            @Html.ActionLink("Deletar", "Delete", new { id=item.key_item })
+            @Html.ActionLink("Editar", "Edit", new { id = item.key_item }, new { @class = "btn btn-warning btn-sm" }) |
+            @Html.ActionLink("Detalhes", "Details", new { id = item.key_item }, new { @class = "btn btn-success btn-sm" }) |
+            @Html.ActionLink("Deletar", "Delete", new { id = item.key_item }, new { @class = "btn btn-danger btn-sm" })
         </td>
     </tr>
 }
 
 </table>
+
+
+</div>
+</div>
