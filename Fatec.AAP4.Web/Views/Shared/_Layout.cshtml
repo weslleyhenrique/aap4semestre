@@ -9,17 +9,38 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse  navbar-fixed-top ">
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                @Html.ActionLink("ERP AAP4", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">ERPAAP4</a>
             </div>
 
-            <div class="navbar-collapse collapse">
+            <div id="navbar" class="navbar-collapse collapse">
 
-                <ul class="nav navbar-nav navbar-btn">
-                    
-                    <li class="btn-group dropdown">
+                @*<ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Nav header</li>
+                            <li><a href="#">Separated link</a></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>*@
+                <ul class="nav navbar-nav">
+                    <li class="btn dropdown">
                         <button type="button" class="btn btn-lg btn-info dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Vendas <span class="caret" />
                         </button>
@@ -29,11 +50,11 @@
                             <li>@Html.ActionLink("Consultar Vendas", "Index", "Pedidos")</li>
                             <li>@Html.ActionLink("Criar Pedido", "Index", "ItensPedido")</li>
                         </ul>
-                        |
                     </li>
 
 
-                    <li class="btn-group dropdown">
+
+                    <li class="btn dropdown">
                         <button type="button" class="btn btn-lg btn-warning dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-th" aria-hidden="true"></span> Estoque <span class="caret" />
                         </button>
@@ -45,10 +66,11 @@
                             <li>@Html.ActionLink("ForneceMaterias", "Index", "ForneceMaterias")</li>
                             <li>@Html.ActionLink("MateriasPrima", "Index", "MateriasPrima")</li>
                         </ul>
-                        |
                     </li>
 
-                    <li class="btn-group dropdown">
+
+
+                    <li class="btn dropdown">
                         <button type="button" class="btn btn-lg btn-success dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> Financeiro <span class="caret" />
                         </button>
@@ -64,12 +86,13 @@
 
                 </ul>
 
-                    @*@Html.Partial("_LoginPartial")*@
 
-</div>
 
+            </div><!--/.nav-collapse -->
         </div>
-    </div>
+    </nav>
+
+
     <div class="container body-content">
         @RenderBody()
         <hr />
