@@ -4,42 +4,48 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="panel panel-default">
+    <div class="panel-heading">
 
-<p>
-    @Html.ActionLink("Incluir", "Create", null, new { @class = "btn btn-primary btn-sm" }) <br/>
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.codigo_planocontas)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.descricao_planocontas)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dre.nome_dre)
-        </th>
-        <th></th>
-    </tr>
+        <h2>Movimentos</h2>
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.codigo_planocontas)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.descricao_planocontas)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dre.nome_dre)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id = item.id_planocontas }, new { @class = "btn btn-warning btn-sm" }) |
-            @Html.ActionLink("Detalhes", "Details", new { id=item.id_planocontas }, new { @class = "btn btn-success btn-sm" }) |
-            @Html.ActionLink("Deletar", "Delete", new { id = item.id_planocontas }, new { @class = "btn btn-danger btn-sm" })
-        </td>
-    </tr>
-}
+    <p>
+        @Html.ActionLink("Incluir", "Create", null, new { @class = "btn btn-primary btn-sm" }) <br />
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.codigo_planocontas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descricao_planocontas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dre.nome_dre)
+            </th>
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.codigo_planocontas)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descricao_planocontas)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dre.nome_dre)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.id_planocontas }, new { @class = "btn btn-warning btn-sm" }) |
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.id_planocontas }, new { @class = "btn btn-success btn-sm" }) |
+                    @Html.ActionLink("Deletar", "Delete", new { id = item.id_planocontas }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

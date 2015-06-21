@@ -20,7 +20,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img src="~/Content/logo.png" />
+                <img src="~/Content/logo.png" width="150" height="60"/>
             </div>
 
             <div id="navbar" class="navbar-collapse collapse">
@@ -47,8 +47,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li>@Html.ActionLink("Clientes", "Index", "Clientes")</li>
                             <li>@Html.ActionLink("Produtos", "Index", "Produtos")</li>
-                            <li>@Html.ActionLink("Consultar Vendas", "Index", "Pedidos")</li>
-                            <li>@Html.ActionLink("Criar Pedido", "Index", "ItensPedido")</li>
+                            <li>@Html.ActionLink("Vendas", "Index", "Pedidos")</li>
                         </ul>
                     </li>
 
@@ -60,11 +59,11 @@
                         </button>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("EstoqueMateria", "Index", "EstoqueMateria")</li>
-                            <li>@Html.ActionLink("EstoqueProduto", "Index", "EstoqueProduto")</li>
+                            <li>@Html.ActionLink("Estoque Matéria-Prima", "Index", "EstoqueMateria")</li>
+                            <li>@Html.ActionLink("Estoque de Produto", "Index", "EstoqueProduto")</li>
                             <li>@Html.ActionLink("Fornecedores", "Index", "Fornecedores")</li>
-                            <li>@Html.ActionLink("ForneceMaterias", "Index", "ForneceMaterias")</li>
-                            <li>@Html.ActionLink("MateriasPrima", "Index", "MateriasPrima")</li>
+                            <li>@Html.ActionLink("Fornecedore/Materia", "Index", "ForneceMaterias")</li>
+                            <li>@Html.ActionLink("Materias Primas", "Index", "MateriasPrima")</li>
                         </ul>
                     </li>
 
@@ -76,11 +75,11 @@
                         </button>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("ContasPagar", "Index", "ContasPagar")</li>
-                            <li>@Html.ActionLink("ContasReceber", "Index", "ContasReceber")</li>
-                            <li>@Html.ActionLink("OutrasContas", "Index", "OutrasContas")</li>
-                            <li>@Html.ActionLink("PlanoContas", "Index", "PlanoContas")</li>
-                            <li>@Html.ActionLink("Dre", "Index", "Dre")</li>
+                            <li>@Html.ActionLink("Contas a Pagar", "Index", "ContasPagar")</li>
+                            <li>@Html.ActionLink("Contas a Receber", "Index", "ContasReceber")</li>
+                            <li>@Html.ActionLink("Outras Contas", "Index", "OutrasContas")</li>
+                            <li>@Html.ActionLink("Plano Contas", "Index", "PlanoContas")</li>
+                            <li>@Html.ActionLink("Demonstrativos", "Index", "Dre")</li>
                         </ul>
                     </li>
 

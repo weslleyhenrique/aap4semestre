@@ -1,51 +1,62 @@
-﻿@model IEnumerable<Fatec.AAP4.Web.Models.pedido>
+﻿@model Fatec.AAP4.Web.Models.PedidosViewModel
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Vendas</h2>
+<div class="panel panel-default">
+    <div class="panel-heading">
 
-<p>
-    @Html.ActionLink("Incluir", "Create", null, new { @class = "btn btn-primary btn-sm" }) <br/>
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.data_compra)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.valor_total)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.id_item_pedido_fk)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.cliente.razaosocial)
-        </th>
-        <th></th>
-    </tr>
+        <h2>Vendas</h2>
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.data_compra)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.valor_total)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.id_item_pedido_fk)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cliente.razaosocial)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id = item.idPedido }, new { @class = "btn btn-warning btn-sm" }) |
-            @Html.ActionLink("Detalhes", "Details", new { id=item.idPedido }, new { @class = "btn btn-success btn-sm" }) |
-            @Html.ActionLink("Deletar", "Delete", new { id = item.idPedido }, new { @class = "btn btn-danger btn-sm" })
-        </td>
-    </tr>
-}
+    <p>
+        @Html.ActionLink("Incluir", "Create", null, new { @class = "btn btn-primary btn-sm" }) <br />
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Numero Pedido
+            </th>
+            <th>
+                Data Compra
+            </th>
+            <th>
+                Total Pedido
+            </th>
+            <th>
+                Cliente
+            </th>
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model.Pedidos)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idPedido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.data_compra)
+                </td>
+                <td>
+                    @{
+                        var moeda = String.Format("{0:0.00}", Html.DisplayFor(modelItem => Model.ItensPedidos.Where(x => x.id_item_pedido == item.idPedido).Sum(x => x.valor_total_item).Value));
+                    }
+                    R$ @moeda
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.cliente.razaosocial)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.idPedido }, new { @class = "btn btn-warning btn-sm" }) |
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.idPedido }, new { @class = "btn btn-success btn-sm" }) |
+                    @Html.ActionLink("Deletar", "Delete", new { id = item.idPedido }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

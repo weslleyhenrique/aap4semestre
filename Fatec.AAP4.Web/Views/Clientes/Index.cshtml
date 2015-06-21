@@ -4,89 +4,95 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Cadastro de clientes</h2>
+<div class="panel panel-default">
+    <div class="panel-heading">
 
-<p>
-    @Html.ActionLink("Incluir", "Create", null, new { @class = "btn btn-primary btn-sm" }) <br/>
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Razão Social
-        </th>
-        <th>
-            CNPJ
-        </th>
-        <th>
-            Inscrição Estadual
-        </th>
-        <th>
-            Endereço
-        </th>
-        <th>
-            Bairro
-        </th>
-        <th>
-            Cidade
-        </th>
-        <th>
-            UF
-        </th>
-        <th>
-            Telefone
-        </th>
-        <th>
-            Email
-        </th>
-        <th>
-            Nome contato
-        </th>
-        <th></th>
-    </tr>
+        <h2>Cadastro de clientes</h2>
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.razaosocial)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cnpj)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.incricao_estadual)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.endereco)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.bairro)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cidade)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.uf)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telefone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.contato)
-        </td>
-        <td>
+    <p>
+        @Html.ActionLink("Incluir", "Create", null, new { @class = "btn btn-primary btn-sm" }) <br />
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Razão Social
+            </th>
+            <th>
+                CNPJ
+            </th>
+            <th>
+                Inscrição Estadual
+            </th>
+            <th>
+                Endereço
+            </th>
+            <th>
+                Bairro
+            </th>
+            <th>
+                Cidade
+            </th>
+            <th>
+                UF
+            </th>
+            <th>
+                Telefone
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Nome contato
+            </th>
+            <th></th>
+        </tr>
 
-            @Html.ActionLink("Editar", "Edit", new { id = item.idCliente }, new { @class = "btn btn-warning btn-sm" }) |
-            @Html.ActionLink("Detalhes", "Details", new { id = item.idCliente }, new { @class = "btn btn-success btn-sm" }) |
-            @Html.ActionLink("Deletar", "Delete", new { id = item.idCliente }, new { @class = "btn btn-danger btn-sm" })
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.razaosocial)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cnpj)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.incricao_estadual)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.endereco)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.bairro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.uf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.telefone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.contato)
+                </td>
+                <td>
 
-            @*, new { @class = "btn btn-warning btn-sm" }*@
+                    @Html.ActionLink("Editar", "Edit", new { id = item.idCliente }, new { @class = "btn btn-warning btn-sm" }) |
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.idCliente }, new { @class = "btn btn-success btn-sm" }) |
+                    @Html.ActionLink("Deletar", "Delete", new { id = item.idCliente }, new { @class = "btn btn-danger btn-sm" })
+
+                    @*, new { @class = "btn btn-warning btn-sm" }*@
 
 
-        </td>
-    </tr>
-}
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+</div>

@@ -4,36 +4,43 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="panel panel-default">
+    <div class="panel-heading">
 
-<p>
-    @Html.ActionLink("Incluir", "Create", null, new { @class = "btn btn-primary btn-sm" }) <br/>
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.fornecedor.cnpj)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.materia_prima.descricao_matprima)
-        </th>
-        <th></th>
-    </tr>
+        <h2>Cadastro de Materias-Primas por fornecedor</h2>
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.fornecedor.cnpj)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.materia_prima.descricao_matprima)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id = item.id_fornecedor_materiaprima }, new { @class = "btn btn-warning btn-sm" }) |
-            @Html.ActionLink("Detalhes", "Details", new { id=item.id_fornecedor_materiaprima }, new { @class = "btn btn-success btn-sm" }) |
-            @Html.ActionLink("Deletar", "Delete", new { id = item.id_fornecedor_materiaprima }, new { @class = "btn btn-danger btn-sm" })
-        </td>
-    </tr>
-}
 
-</table>
+    <p>
+        @Html.ActionLink("Incluir", "Create", null, new { @class = "btn btn-primary btn-sm" }) <br />
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.fornecedor.cnpj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.materia_prima.descricao_matprima)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fornecedor.cnpj)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.materia_prima.descricao_matprima)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.id_fornecedor_materiaprima }, new { @class = "btn btn-warning btn-sm" }) |
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.id_fornecedor_materiaprima }, new { @class = "btn btn-success btn-sm" }) |
+                    @Html.ActionLink("Deletar", "Delete", new { id = item.id_fornecedor_materiaprima }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

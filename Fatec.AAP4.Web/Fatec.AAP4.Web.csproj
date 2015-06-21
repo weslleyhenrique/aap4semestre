@@ -270,6 +270,7 @@
     <Compile Include="Models\pedido.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PedidosViewModel.cs" />
     <Compile Include="Models\plano_contas.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

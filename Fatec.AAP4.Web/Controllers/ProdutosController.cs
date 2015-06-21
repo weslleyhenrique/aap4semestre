@@ -39,7 +39,7 @@ namespace Fatec.AAP4.Web.Controllers
         // GET: Produtos/Create
         public ActionResult Create()
         {
-            ViewBag.idMateriaPrima = new SelectList(db.materia_prima, "id_matprima", "descricao_matprima");
+            ViewBag.id_matprima = new SelectList(db.materia_prima, "id_matprima", "descricao_matprima");
             return View();
         }
 
@@ -48,8 +48,9 @@ namespace Fatec.AAP4.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_produto,descricao_produto,valor_unitario,IdMateriaPrima,QtdeMateriaUsada")] produto produto)
+        public ActionResult Create([Bind(Include = "id_produto,descricao_produto,valor_unitario,id_matprima,QtdeMateriaUsada")] produto produto)
         {
+
             if (ModelState.IsValid)
             {
                 db.produto.Add(produto);
@@ -57,7 +58,7 @@ namespace Fatec.AAP4.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(produto);
+            return RedirectToAction("Create");
         }
 
         // GET: Produtos/Edit/5

@@ -4,72 +4,78 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="panel panel-default">
+    <div class="panel-heading">
 
-<p>
-    @Html.ActionLink("Incluir", "Create", null, new { @class = "btn btn-primary btn-sm" }) <br/>
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.data_cadastro)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.descricao_conta)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.valor_conta)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.data_vencimento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.status_conta)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.observacao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.plano_contas.codigo_planocontas)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fornecedor.cnpj)
-        </th>
-        <th></th>
-    </tr>
+        <h2>Contas a Pagar</h2>
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.data_cadastro)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.descricao_conta)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.valor_conta)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.data_vencimento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.status_conta)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.observacao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.plano_contas.codigo_planocontas)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fornecedor.cnpj)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id = item.id_contaspagar }, new { @class = "btn btn-warning btn-sm" }) |
-            @Html.ActionLink("Detalhes", "Details", new { id = item.id_contaspagar }, new { @class = "btn btn-success btn-sm" }) |
-            @Html.ActionLink("Deletar", "Delete", new { id = item.id_contaspagar }, new { @class = "btn btn-danger btn-sm" })
-        </td>
-    </tr>
-}
+    <p>
+        @Html.ActionLink("Incluir", "Create", null, new { @class = "btn btn-primary btn-sm" }) <br />
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.data_cadastro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descricao_conta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.valor_conta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.data_vencimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.status_conta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.observacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.plano_contas.codigo_planocontas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fornecedor.cnpj)
+            </th>
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.data_cadastro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descricao_conta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.valor_conta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.data_vencimento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.status_conta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.observacao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.plano_contas.codigo_planocontas)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fornecedor.cnpj)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.id_contaspagar }, new { @class = "btn btn-warning btn-sm" }) |
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.id_contaspagar }, new { @class = "btn btn-success btn-sm" }) |
+                    @Html.ActionLink("Deletar", "Delete", new { id = item.id_contaspagar }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

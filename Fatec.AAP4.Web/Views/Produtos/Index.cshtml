@@ -29,6 +29,12 @@
                 <th>
                     Preço Unitário
                 </th>
+                <th>
+                    Quantidade Matéria-Prima
+                </th>
+                <th>
+                    Matéria-Prima Utilizada
+                </th>
                 <th></th>
             </tr>
 
@@ -43,6 +49,12 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.valor_unitario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QtdeMateriaUsada)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.materia_prima.descricao_matprima)
                     </td>
                     <td>
 

@@ -78,10 +78,10 @@
                         @Html.DisplayFor(modelItem => item.quantidade)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.valor_unitario_item)
+                        R$ @String.Format("{0:0.00}",Html.DisplayFor(modelItem => item.valor_unitario_item))
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.valor_total_item)
+                        R$ @String.Format("{0:0.00}",Html.DisplayFor(modelItem => item.valor_total_item))
                     </td>
                     <td>
                         @Html.ActionLink("Deletar", "DeletarItem", new { 

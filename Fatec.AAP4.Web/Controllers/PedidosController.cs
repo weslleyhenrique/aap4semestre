@@ -19,7 +19,11 @@ namespace Fatec.AAP4.Web.Controllers
         public ActionResult Index()
         {
             var pedido = db.pedido.Include(p => p.cliente);
-            return View(pedido.ToList());
+            PedidosViewModel pedidos = new PedidosViewModel();
+            pedidos.ItensPedidos = db.item_pedido.ToList();
+            pedidos.Pedidos = db.pedido.ToList();
+
+            return View(pedidos);
         }
 
         // GET: Pedidos/Details/5
@@ -90,8 +94,8 @@ namespace Fatec.AAP4.Web.Controllers
 
                 var produdo = db.produto.SingleOrDefault(x => x.id_produto == model.ItemSelecionado);
 
-                var materiaAtual = db.estoque_materiaprima.SingleOrDefault(x => x.id_matprima == produdo.IdMateriaPrima).quant_atual;
-                db.estoque_materiaprima.SingleOrDefault(x => x.id_matprima == produdo.IdMateriaPrima).quant_atual = materiaAtual - (produdo.QtdeMateriaUsada*model.Quantidade);
+                var materiaAtual = db.estoque_materiaprima.SingleOrDefault(x => x.id_matprima == produdo.id_matprima).quant_atual;
+                db.estoque_materiaprima.SingleOrDefault(x => x.id_matprima == produdo.id_matprima).quant_atual = materiaAtual - (produdo.QtdeMateriaUsada * model.Quantidade);
 
                 db.item_pedido.Add(
                     new item_pedido
@@ -180,8 +184,8 @@ namespace Fatec.AAP4.Web.Controllers
 
                 var produdo = db.produto.SingleOrDefault(x => x.id_produto == produtoId);
 
-                var materiaAtual = db.estoque_materiaprima.SingleOrDefault(x => x.id_matprima == produdo.IdMateriaPrima).quant_atual;
-                db.estoque_materiaprima.SingleOrDefault(x => x.id_matprima == produdo.IdMateriaPrima).quant_atual = materiaAtual + (produdo.QtdeMateriaUsada * item_pedido.quantidade);
+                var materiaAtual = db.estoque_materiaprima.SingleOrDefault(x => x.id_matprima == produdo.id_matprima).quant_atual;
+                db.estoque_materiaprima.SingleOrDefault(x => x.id_matprima == produdo.id_matprima).quant_atual = materiaAtual + (produdo.QtdeMateriaUsada * item_pedido.quantidade);
 
 
                 var qtdeAtual = db.estoque_produtoacabado.SingleOrDefault(x => x.id_produto == produtoId).quant_atual;
