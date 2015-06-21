@@ -17,7 +17,7 @@ namespace Fatec.AAP4.Web.Controllers
         // GET: ItensPedido
         public ActionResult Index()
         {
-            var item_pedido = db.item_pedido.Include(i => i.produto);
+            var item_pedido = db.item_pedido;
             return View(item_pedido.ToList());
         }
 
@@ -28,6 +28,7 @@ namespace Fatec.AAP4.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             item_pedido item_pedido = db.item_pedido.Find(id);
             if (item_pedido == null)
             {

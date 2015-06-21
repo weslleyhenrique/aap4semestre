@@ -225,6 +225,7 @@
     <Compile Include="Models\contas_receber.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DetalheItens.cs" />
     <Compile Include="Models\dre.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

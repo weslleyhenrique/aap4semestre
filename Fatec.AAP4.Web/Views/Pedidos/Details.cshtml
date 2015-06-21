@@ -1,4 +1,4 @@
-﻿@model Fatec.AAP4.Web.Models.pedido
+﻿@model Fatec.AAP4.Web.Models.DetalheItens
 
 @{
     ViewBag.Title = "Details";
@@ -9,7 +9,34 @@
 <div>
     <h4>pedido</h4>
     <hr />
-    <dl class="dl-horizontal">
+
+    Produtos:
+    @*<select>
+        @foreach (var item in Model.EstoqueProd)
+        {
+            <option value="@item.id_estoque_prodacab">@item.produto.descricao_produto (@item.quant_atual)</option>
+        }
+        @Html.ActionLink("Incluir Produto", "IncluirProd", new { id = Model.idPedido }, new { @class = "btn btn-warning btn-sm" }) |
+    </select>*@
+
+    @using (Html.BeginForm("IncluirProd", "Pedidos", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="row">
+            <div class="col-md-8">
+                Escolha o Produto:
+                @Html.HiddenFor(x=>x.PedidoSelecionado.idPedido)
+                @* Passando o Nome da ViewBag *@
+                @Html.DropDownList("ProdId", String.Empty)
+
+                <input type="submit" value="Enviar" class="btn btn-default" />
+            </div>
+        </div>
+    }
+
+    <hr />
+    @*<dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.data_compra)
         </dt>
@@ -42,9 +69,9 @@
             @Html.DisplayFor(model => model.cliente.razaosocial)
         </dd>
 
-    </dl>
+    </dl>*@
 </div>
 <p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.idPedido }, new { @class = "btn btn-warning btn-sm" }) |
+        @*@Html.ActionLink("Editar", "Edit", new { id = Model.idPedido }, new { @class = "btn btn-warning btn-sm" }) |*@
         @Html.ActionLink("Voltar", "Index", null,new { @class = "btn btn-default btn-sm" })
 </p>

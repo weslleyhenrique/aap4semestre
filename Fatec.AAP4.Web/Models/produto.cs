@@ -17,7 +17,6 @@ namespace Fatec.AAP4.Web.Models
         public produto()
         {
             this.estoque_produtoacabado = new HashSet<estoque_produtoacabado>();
-            this.item_pedido = new HashSet<item_pedido>();
         }
     
         public int id_produto { get; set; }
@@ -25,6 +24,5 @@ namespace Fatec.AAP4.Web.Models
         public string valor_unitario { get; set; }
     
         public virtual ICollection<estoque_produtoacabado> estoque_produtoacabado { get; set; }
-        public virtual ICollection<item_pedido> item_pedido { get; set; }
     }
 }

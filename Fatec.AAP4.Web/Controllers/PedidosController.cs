@@ -13,6 +13,7 @@ namespace Fatec.AAP4.Web.Controllers
     public class PedidosController : Controller
     {
         private mydbEntities db = new mydbEntities();
+        public DetalheItens DetalheSelecionado = new DetalheItens();
 
         // GET: Pedidos
         public ActionResult Index()
@@ -33,8 +34,68 @@ namespace Fatec.AAP4.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(pedido);
+
+            DetalheSelecionado.EstoqueProd = db.estoque_produtoacabado.Where(x => x.quant_atual > 0).ToList();
+            DetalheSelecionado.ItensDB = db.item_pedido.Where(x => x.id_item_pedido == pedido.id_item_pedido_fk);
+            DetalheSelecionado.PedidoSelecionado = pedido;
+
+            ViewBag.ProdId = new SelectList
+             (
+                 new DetalheItens().FuncEstoqueProd(),
+                 "id_estoque_prodacab",
+                 "produto.descricao_produto"
+             );
+            return View(DetalheSelecionado);
         }
+
+
+
+        public ActionResult IncluirProd()
+        {
+            // Criando uma ViewBag com uma lista de clientes.
+            // Utilizo o nome da ViewBag com ClienteId apenas
+            // para facilitar o entendimento do código
+            // new SelectList significa retornar uma
+            // estrutura de DropDownList
+            ViewBag.ProdId = new SelectList
+                (
+                    new DetalheItens().FuncEstoqueProd() ,
+                    "id_estoque_prodacab",
+                    "produto.descricao_produto"
+                );
+
+            return View();
+        }
+
+        [HttpPost]
+        // No Post o valor selecionado do DropDownList
+        // será recebido no parametro clienteId
+        public ActionResult IncluirProd(int pedido, string prodId)
+        {
+            // O quarto parametro "clienteId" diz qual é o ID
+            // que deve vir pré-selecionado ao montar o DropDownList
+
+            ViewBag.ProdId = new SelectList
+                (
+                    new DetalheItens().FuncEstoqueProd(),
+                    "id_estoque_prodacab",
+                    "produto.descricao_produto",
+                    prodId
+                );
+
+            return View();
+        }
+
+
+
+
+
+
+
+
+
+
+
 
         // GET: Pedidos/Create
         public ActionResult Create()

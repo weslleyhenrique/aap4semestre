@@ -103,14 +103,14 @@
         </EntityType>
         <EntityType Name="item_pedido">
           <Key>
-            <PropertyRef Name="key_item" />
+            <PropertyRef Name="key_pedido" />
           </Key>
           <Property Name="id_item_pedido" Type="int" Nullable="false" />
           <Property Name="valor_unitario_item" Type="double" />
           <Property Name="quantidade" Type="int" />
           <Property Name="valor_total_item" Type="double" />
           <Property Name="id_produto_fk" Type="int" Nullable="false" />
-          <Property Name="key_item" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="key_pedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="materia-prima">
           <Key>
@@ -312,18 +312,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="id_produto_fk">
-          <End Role="produto" Type="Self.produto" Multiplicity="1" />
-          <End Role="item_pedido" Type="Self.item_pedido" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="produto">
-              <PropertyRef Name="id_produto" />
-            </Principal>
-            <Dependent Role="item_pedido">
-              <PropertyRef Name="id_produto_fk" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="mydbModelStoreContainer">
           <EntitySet Name="cliente" EntityType="Self.cliente" Schema="mydb" store:Type="Tables" />
           <EntitySet Name="contas_pagar" EntityType="Self.contas_pagar" Schema="mydb" store:Type="Tables" />
@@ -390,10 +378,6 @@
           <AssociationSet Name="fk_Plano_Contas_DRE1" Association="Self.fk_Plano_Contas_DRE1">
             <End Role="dre" EntitySet="dre" />
             <End Role="plano_contas" EntitySet="plano_contas" />
-          </AssociationSet>
-          <AssociationSet Name="id_produto_fk" Association="Self.id_produto_fk">
-            <End Role="produto" EntitySet="produto" />
-            <End Role="item_pedido" EntitySet="item_pedido" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -462,10 +446,6 @@
           <AssociationSet Name="fk_Fornecedor_has_Materia_Prima_Materia_Prima1" Association="mydbModel.fk_Fornecedor_has_Materia_Prima_Materia_Prima1">
             <End Role="materia_prima" EntitySet="materia_prima" />
             <End Role="fornece_materiaprima" EntitySet="fornece_materiaprima" />
-          </AssociationSet>
-          <AssociationSet Name="id_produto_fk" Association="mydbModel.id_produto_fk">
-            <End Role="produto" EntitySet="produto" />
-            <End Role="item_pedido" EntitySet="item_pedido" />
           </AssociationSet>
           <AssociationSet Name="fk_Outras_Contas_Plano_Contas1" Association="mydbModel.fk_Outras_Contas_Plano_Contas1">
             <End Role="plano_contas" EntitySet="plano_contas" />
@@ -584,15 +564,14 @@
         </EntityType>
         <EntityType Name="item_pedido">
           <Key>
-            <PropertyRef Name="key_item" />
+            <PropertyRef Name="key_pedido" />
           </Key>
           <Property Name="id_item_pedido" Type="Int32" Nullable="false" />
           <Property Name="valor_unitario_item" Type="Double" />
           <Property Name="quantidade" Type="Int32" />
           <Property Name="valor_total_item" Type="Double" />
           <Property Name="id_produto_fk" Type="Int32" Nullable="false" />
-          <Property Name="key_item" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="produto" Relationship="mydbModel.id_produto_fk" FromRole="item_pedido" ToRole="produto" />
+          <Property Name="key_pedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="materia_prima">
           <Key>
@@ -649,7 +628,6 @@
           <Property Name="descricao_produto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="valor_unitario" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="estoque_produtoacabado" Relationship="mydbModel.fk_Estoque_ProdutoAcabado_Produto1" FromRole="produto" ToRole="estoque_produtoacabado" />
-          <NavigationProperty Name="item_pedido" Relationship="mydbModel.id_produto_fk" FromRole="produto" ToRole="item_pedido" />
         </EntityType>
         <Association Name="fk_Pedido_Cliente1">
           <End Type="mydbModel.cliente" Role="cliente" Multiplicity="1" />
@@ -795,18 +773,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="id_produto_fk">
-          <End Type="mydbModel.produto" Role="produto" Multiplicity="1" />
-          <End Type="mydbModel.item_pedido" Role="item_pedido" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="produto">
-              <PropertyRef Name="id_produto" />
-            </Principal>
-            <Dependent Role="item_pedido">
-              <PropertyRef Name="id_produto_fk" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_Outras_Contas_Plano_Contas1">
           <End Type="mydbModel.plano_contas" Role="plano_contas" Multiplicity="1" />
           <End Type="mydbModel.outras_contas" Role="outras_contas" Multiplicity="*" />
@@ -932,7 +898,7 @@
           <EntitySetMapping Name="item_pedido">
             <EntityTypeMapping TypeName="mydbModel.item_pedido">
               <MappingFragment StoreEntitySet="item_pedido">
-                <ScalarProperty Name="key_item" ColumnName="key_item" />
+                <ScalarProperty Name="key_pedido" ColumnName="key_pedido" />
                 <ScalarProperty Name="id_produto_fk" ColumnName="id_produto_fk" />
                 <ScalarProperty Name="valor_total_item" ColumnName="valor_total_item" />
                 <ScalarProperty Name="quantidade" ColumnName="quantidade" />

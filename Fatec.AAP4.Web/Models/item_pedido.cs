@@ -19,8 +19,6 @@ namespace Fatec.AAP4.Web.Models
         public Nullable<int> quantidade { get; set; }
         public Nullable<double> valor_total_item { get; set; }
         public int id_produto_fk { get; set; }
-        public int key_item { get; set; }
-    
-        public virtual produto produto { get; set; }
+        public int key_pedido { get; set; }
     }
 }
