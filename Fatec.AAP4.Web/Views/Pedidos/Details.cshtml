@@ -12,7 +12,7 @@
 
     Produtos:
     @*<select>
-        @foreach (var item in Model.EstoqueProd)
+        @foreach (var item in Model.EstoqueProd....)
         {
             <option value="@item.id_estoque_prodacab">@item.produto.descricao_produto (@item.quant_atual)</option>
         }
