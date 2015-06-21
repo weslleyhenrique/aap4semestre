@@ -155,6 +155,8 @@
           <Property Name="id_produto" Type="int" Nullable="false" />
           <Property Name="descricao_produto" Type="varchar" MaxLength="100" />
           <Property Name="valor_unitario" Type="varchar" MaxLength="45" />
+          <Property Name="IdMateriaPrima" Type="int" Nullable="false" />
+          <Property Name="QtdeMateriaUsada" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="fk_Contas_Pagar_Conta_Movimentação1">
           <End Role="plano_contas" Type="Self.plano_contas" Multiplicity="1" />
@@ -312,6 +314,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="materia">
+          <End Role="materia-prima" Type="Self.materia-prima" Multiplicity="1" />
+          <End Role="produto" Type="Self.produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="materia-prima">
+              <PropertyRef Name="id_matprima" />
+            </Principal>
+            <Dependent Role="produto">
+              <PropertyRef Name="IdMateriaPrima" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="mydbModelStoreContainer">
           <EntitySet Name="cliente" EntityType="Self.cliente" Schema="mydb" store:Type="Tables" />
           <EntitySet Name="contas_pagar" EntityType="Self.contas_pagar" Schema="mydb" store:Type="Tables" />
@@ -378,6 +392,10 @@
           <AssociationSet Name="fk_Plano_Contas_DRE1" Association="Self.fk_Plano_Contas_DRE1">
             <End Role="dre" EntitySet="dre" />
             <End Role="plano_contas" EntitySet="plano_contas" />
+          </AssociationSet>
+          <AssociationSet Name="materia" Association="Self.materia">
+            <End Role="materia-prima" EntitySet="materia-prima" />
+            <End Role="produto" EntitySet="produto" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -450,6 +468,10 @@
           <AssociationSet Name="fk_Outras_Contas_Plano_Contas1" Association="mydbModel.fk_Outras_Contas_Plano_Contas1">
             <End Role="plano_contas" EntitySet="plano_contas" />
             <End Role="outras_contas" EntitySet="outras_contas" />
+          </AssociationSet>
+          <AssociationSet Name="materia" Association="mydbModel.materia">
+            <End Role="materia_prima" EntitySet="materia_prima" />
+            <End Role="produto" EntitySet="produto" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="cliente">
@@ -581,6 +603,7 @@
           <Property Name="descricao_matprima" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="estoque_materiaprima" Relationship="mydbModel.fk_Estoque_MateriaPrima_Materia_Prima1" FromRole="materia_prima" ToRole="estoque_materiaprima" />
           <NavigationProperty Name="fornece_materiaprima" Relationship="mydbModel.fk_Fornecedor_has_Materia_Prima_Materia_Prima1" FromRole="materia_prima" ToRole="fornece_materiaprima" />
+          <NavigationProperty Name="produto" Relationship="mydbModel.materia" FromRole="materia_prima" ToRole="produto" />
         </EntityType>
         <EntityType Name="outras_contas">
           <Key>
@@ -628,6 +651,9 @@
           <Property Name="descricao_produto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="valor_unitario" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="estoque_produtoacabado" Relationship="mydbModel.fk_Estoque_ProdutoAcabado_Produto1" FromRole="produto" ToRole="estoque_produtoacabado" />
+          <Property Name="QtdeMateriaUsada" Type="Int32" Nullable="false" />
+          <Property Name="IdMateriaPrima" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="materia_prima" Relationship="mydbModel.materia" FromRole="produto" ToRole="materia_prima" />
         </EntityType>
         <Association Name="fk_Pedido_Cliente1">
           <End Type="mydbModel.cliente" Role="cliente" Multiplicity="1" />
@@ -782,6 +808,18 @@
             </Principal>
             <Dependent Role="outras_contas">
               <PropertyRef Name="Plano_Contas_id_planocontas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="materia">
+          <End Type="mydbModel.materia_prima" Role="materia_prima" Multiplicity="1" />
+          <End Type="mydbModel.produto" Role="produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="materia_prima">
+              <PropertyRef Name="id_matprima" />
+            </Principal>
+            <Dependent Role="produto">
+              <PropertyRef Name="IdMateriaPrima" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -950,6 +988,8 @@
           <EntitySetMapping Name="produto">
             <EntityTypeMapping TypeName="mydbModel.produto">
               <MappingFragment StoreEntitySet="produto">
+                <ScalarProperty Name="IdMateriaPrima" ColumnName="IdMateriaPrima" />
+                <ScalarProperty Name="QtdeMateriaUsada" ColumnName="QtdeMateriaUsada" />
                 <ScalarProperty Name="valor_unitario" ColumnName="valor_unitario" />
                 <ScalarProperty Name="descricao_produto" ColumnName="descricao_produto" />
                 <ScalarProperty Name="id_produto" ColumnName="id_produto" />

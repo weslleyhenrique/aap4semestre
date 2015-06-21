@@ -51,6 +51,14 @@ namespace Fatec.AAP4.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id_estoque_prodacab,id_produto,id_planocontas,data_fabricacao,data_estocagem,quant_minima,quant_maxima,quant_atual")] estoque_produtoacabado estoque_produtoacabado)
         {
+
+            var produdo = db.produto.SingleOrDefault(x => x.id_produto == estoque_produtoacabado.id_produto);
+
+            var materiaAtual = db.estoque_materiaprima.SingleOrDefault(x => x.id_matprima == produdo.IdMateriaPrima).quant_atual;
+            db.estoque_materiaprima.SingleOrDefault(x => x.id_matprima == produdo.IdMateriaPrima).quant_atual = materiaAtual - (produdo.QtdeMateriaUsada * estoque_produtoacabado.quant_atual);
+
+
+
             if (ModelState.IsValid)
             {
                 db.estoque_produtoacabado.Add(estoque_produtoacabado);
@@ -87,6 +95,14 @@ namespace Fatec.AAP4.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id_estoque_prodacab,id_produto,id_planocontas,data_fabricacao,data_estocagem,quant_minima,quant_maxima,quant_atual")] estoque_produtoacabado estoque_produtoacabado)
         {
+
+            var produdo = db.produto.SingleOrDefault(x => x.id_produto == estoque_produtoacabado.id_produto);
+
+            var materiaAtual = db.estoque_materiaprima.SingleOrDefault(x => x.id_matprima == produdo.IdMateriaPrima).quant_atual;
+            db.estoque_materiaprima.SingleOrDefault(x => x.id_matprima == produdo.IdMateriaPrima).quant_atual = (produdo.QtdeMateriaUsada * estoque_produtoacabado.quant_atual);
+
+
+
             if (ModelState.IsValid)
             {
                 db.Entry(estoque_produtoacabado).State = EntityState.Modified;
@@ -119,6 +135,14 @@ namespace Fatec.AAP4.Web.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             estoque_produtoacabado estoque_produtoacabado = db.estoque_produtoacabado.Find(id);
+
+            var produdo = db.produto.SingleOrDefault(x => x.id_produto == estoque_produtoacabado.id_produto);
+
+            var materiaAtual = db.estoque_materiaprima.SingleOrDefault(x => x.id_matprima == produdo.IdMateriaPrima).quant_atual;
+            db.estoque_materiaprima.SingleOrDefault(x => x.id_matprima == produdo.IdMateriaPrima).quant_atual = materiaAtual + (produdo.QtdeMateriaUsada * estoque_produtoacabado.quant_atual);
+
+
+
             db.estoque_produtoacabado.Remove(estoque_produtoacabado);
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -22,7 +22,10 @@ namespace Fatec.AAP4.Web.Models
         public int id_produto { get; set; }
         public string descricao_produto { get; set; }
         public string valor_unitario { get; set; }
+        public int QtdeMateriaUsada { get; set; }
+        public int IdMateriaPrima { get; set; }
     
         public virtual ICollection<estoque_produtoacabado> estoque_produtoacabado { get; set; }
+        public virtual materia_prima materia_prima { get; set; }
     }
 }

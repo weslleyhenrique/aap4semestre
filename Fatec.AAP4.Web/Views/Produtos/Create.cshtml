@@ -41,6 +41,22 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.IdMateriaPrima, "Materia Prima Utilizada", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idMateriaPrima", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IdMateriaPrima, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="descricao_produto">Quantidade Produção</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.QtdeMateriaUsada, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.QtdeMateriaUsada, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Incluir" class="btn btn-primary" />
             </div>

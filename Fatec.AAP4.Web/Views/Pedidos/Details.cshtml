@@ -3,11 +3,10 @@
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details</h2>
+@*<br /><br />*@
+<h2>Detalhes do pedido - #@Model.PedidoSelecionado.idPedido</h2>
 
 <div>
-    <h4>pedido</h4>
     <hr />
 
     Produtos:
@@ -19,21 +18,23 @@
         @Html.ActionLink("Incluir Produto", "IncluirProd", new { id = Model.idPedido }, new { @class = "btn btn-warning btn-sm" }) |
     </select>*@
 
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("IncluirProd", "Pedidos", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
 
         <div class="row">
             <div class="col-md-8">
                 Escolha o Produto:
-                @*@Html.HiddenFor(x=>x.PedidoSelecionado.idPedido)*@
+                @Html.HiddenFor(x=>x.PedidoSelecionado.idPedido)
                 @* Passando o Nome da ViewBag *@
                 @Html.DropDownListFor(p => p.ItemSelecionado, Model.ListEstoqueProd, "Selecione")
 
-                @*<input type="submit" value="Enviar" class="btn btn-default" />*@
-                @Html.ActionLink("Incluir", "IncluirProd",
+                <label for="FirstName"><b>Quantidade:</b></label>
+                @Html.TextBox("Quantidade",Model.Quantidade)
+                <input type="submit" value="Incluir" class="btn btn-primary" />
+                @*@Html.ActionLink("Incluir", "IncluirProd",
                             new { DetalheItens = Model },
-                            new { @class = "btn btn-default btn-sm" })
+                            new { @class = "btn btn-default btn-sm" })*@
 
 
             </div>
@@ -41,42 +42,84 @@
     }
 
     <hr />
-    @*<dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.data_compra)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.data_compra)
-        </dd>
+    <table class="table">
+        <tr>
+            <th>
+                Código
+            </th>
+            <th>
+                Descrição
+            </th>
+            <th>
+                Quantidade
+            </th>
+            <th>
+                Preço Unitario
+            </th>
+            <th>
+                Total
+            </th>
+            <th></th>
+        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.valor_total)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.valor_total)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.id_item_pedido_fk)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.id_item_pedido_fk)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.cliente.razaosocial)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.cliente.razaosocial)
-        </dd>
-
-    </dl>*@
+        @if (Model.ItensDB != null && Model.ItensDB.Any()) 
+        { 
+            foreach (var item in Model.ItensDB)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id_produto_fk)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.Produtos.SingleOrDefault(x=>x.id_produto == item.id_produto_fk).descricao_produto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.quantidade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.valor_unitario_item)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.valor_total_item)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Deletar", "DeletarItem", new { 
+                                pedidoId = Model.PedidoSelecionado.idPedido,
+                                key = item.key_pedido,
+                                produtoId = item.id_produto_fk },
+                            new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        }
+        </table>
+      
 </div>
 <p>
-        @*@Html.ActionLink("Editar", "Edit", new { id = Model.idPedido }, new { @class = "btn btn-warning btn-sm" }) |*@
-        @Html.ActionLink("Voltar", "Index", null,new { @class = "btn btn-default btn-sm" })
+        @Html.ActionLink("Voltar", "Index", null,new { @class = "btn btn-danger btn-sm" })
+
+
+        @using (Html.BeginForm("ConfirmarVenda", "Pedidos", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="row">
+                <div class="col-md-8">
+                    Forma de Pagamento:
+                    @Html.Hidden("idPedido", Model.PedidoSelecionado.idPedido)
+                    @* Passando o Nome da ViewBag *@
+
+                    <select id="FormaPagamento" name="FormaPagamento">
+                        <option value="A Vista">A Vista</option>
+                        <option value="A Prazo">A Prazo</option>
+                        <option value="Duplicata">Duplicata</option>
+                    </select>
+                    <input type="submit" value="Confirmar Venda" class="btn btn-success" />
+
+                </div>
+            </div>
+        }
+
+
 </p>

@@ -32,6 +32,7 @@
         <AssociationConnector Association="mydbModel.fk_Fornecedor_has_Materia_Prima_Fornecedor1" />
         <AssociationConnector Association="mydbModel.fk_Fornecedor_has_Materia_Prima_Materia_Prima1" />
         <AssociationConnector Association="mydbModel.fk_Outras_Contas_Plano_Contas1" />
+        <AssociationConnector Association="mydbModel.materia" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

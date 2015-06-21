@@ -8,13 +8,15 @@ namespace Fatec.AAP4.Web.Models
 {
     public class DetalheItens
     {
-        protected mydbEntities db = new mydbEntities();
+        public mydbEntities db = new mydbEntities();
 
         public IEnumerable<item_pedido> ItensDB { get; set; }
         public IEnumerable<estoque_produtoacabado> EstoqueProd { get; set; }
+        public IEnumerable<produto> Produtos { get; set; }
         public IEnumerable<SelectListItem> ListEstoqueProd { get; set; }
 
         public int ItemSelecionado { get; set; }
+        public int Quantidade { get; set; }
 
         public pedido PedidoSelecionado { get; set; }
 

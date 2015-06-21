@@ -18,6 +18,7 @@ namespace Fatec.AAP4.Web.Models
         {
             this.estoque_materiaprima = new HashSet<estoque_materiaprima>();
             this.fornece_materiaprima = new HashSet<fornece_materiaprima>();
+            this.produto = new HashSet<produto>();
         }
     
         public int id_matprima { get; set; }
@@ -25,5 +26,6 @@ namespace Fatec.AAP4.Web.Models
     
         public virtual ICollection<estoque_materiaprima> estoque_materiaprima { get; set; }
         public virtual ICollection<fornece_materiaprima> fornece_materiaprima { get; set; }
+        public virtual ICollection<produto> produto { get; set; }
     }
 }

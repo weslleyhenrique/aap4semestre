@@ -37,9 +37,11 @@ namespace Fatec.AAP4.Web.Controllers
 
             DetalheSelecionado.EstoqueProd = db.estoque_produtoacabado.Where(x => x.quant_atual > 0).ToList();
             DetalheSelecionado.ListEstoqueProd = DetalheSelecionado.EstoqueProd.Select(x => new
-                SelectListItem { Text = x.produto.descricao_produto, Value = x.id_produto.ToString() });
-            DetalheSelecionado.ItensDB = db.item_pedido.Where(x => x.id_item_pedido == pedido.id_item_pedido_fk);
+                SelectListItem { Text = x.produto.descricao_produto+" - ( "+x.quant_atual+" )", Value = x.id_produto.ToString() });
+            DetalheSelecionado.ItensDB = db.item_pedido.Where(x => x.id_item_pedido == pedido.idPedido).ToList();
+            DetalheSelecionado.Produtos = db.produto.ToList();
             DetalheSelecionado.PedidoSelecionado = pedido;
+            DetalheSelecionado.Quantidade = 1;
 
             ViewBag.ProdId = new SelectList
                      (
@@ -72,25 +74,65 @@ namespace Fatec.AAP4.Web.Controllers
         //[HttpPost]
         // No Post o valor selecionado do DropDownList
         // será recebido no parametro clienteId
-        public ActionResult IncluirProd(DetalheItens DetalheItens)
+        public ActionResult IncluirProd(DetalheItens model)
         {
             // O quarto parametro "clienteId" diz qual é o ID
             // que deve vir pré-selecionado ao montar o DropDownList
+            var valorProduto = Convert.ToDouble(db.produto.SingleOrDefault(x => x.id_produto == model.ItemSelecionado).valor_unitario);
 
-            //ViewBag.ProdId = new SelectList
-            //    (
-            //        new DetalheItens().FuncEstoqueProd(),
-            //        "id_estoque_prodacab",
-            //        "produto.descricao_produto",
-            //        prodId
-            //    );
+
+
+            if (ModelState.IsValid)
+            {
+
+                var qtdeAtual = db.estoque_produtoacabado.SingleOrDefault(x => x.id_produto == model.ItemSelecionado).quant_atual;
+                db.estoque_produtoacabado.SingleOrDefault(x => x.id_produto == model.ItemSelecionado).quant_atual = qtdeAtual - model.Quantidade;
+
+                var produdo = db.produto.SingleOrDefault(x => x.id_produto == model.ItemSelecionado);
+
+                var materiaAtual = db.estoque_materiaprima.SingleOrDefault(x => x.id_matprima == produdo.IdMateriaPrima).quant_atual;
+                db.estoque_materiaprima.SingleOrDefault(x => x.id_matprima == produdo.IdMateriaPrima).quant_atual = materiaAtual - (produdo.QtdeMateriaUsada*model.Quantidade);
+
+                db.item_pedido.Add(
+                    new item_pedido
+                    {
+                        id_item_pedido = model.PedidoSelecionado.idPedido,
+                        id_produto_fk = model.ItemSelecionado,
+                        quantidade = model.Quantidade,
+                        valor_unitario_item = valorProduto,
+                        valor_total_item = model.Quantidade * valorProduto
+                    });
+                db.SaveChanges();
+                return RedirectToAction("Details", new {id = model.PedidoSelecionado.idPedido });
+            }
+
+
 
             return View();
         }
 
 
 
+        public ActionResult ConfirmarVenda(string idPedido, string FormaPagamento)
+        {
 
+
+            contas_receber pagamento = new contas_receber();
+            pagamento.data_cadastro = DateTime.Now;
+            pagamento.data_recebimento = DateTime.Now;
+            pagamento.status = "OK";
+            pagamento.forma_pagamento = FormaPagamento;
+            pagamento.id_planocontas = 1;
+            pagamento.idPedido = Convert.ToInt32(idPedido);
+            pagamento.idContas_Receber = Convert.ToInt32(idPedido);
+
+
+            db.contas_receber.Add(pagamento);
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
+
+        }
 
 
 
@@ -123,6 +165,47 @@ namespace Fatec.AAP4.Web.Controllers
             ViewBag.idCliente = new SelectList(db.cliente, "idCliente", "razaosocial", pedido.idCliente);
             return View(pedido);
         }
+
+
+
+
+
+        public ActionResult DeletarItem(int pedidoId, int key,int produtoId)
+        {
+
+            item_pedido item_pedido = db.item_pedido.SingleOrDefault(
+                x => x.id_item_pedido == pedidoId && x.key_pedido == key);
+            if (item_pedido != null)
+            {
+
+                var produdo = db.produto.SingleOrDefault(x => x.id_produto == produtoId);
+
+                var materiaAtual = db.estoque_materiaprima.SingleOrDefault(x => x.id_matprima == produdo.IdMateriaPrima).quant_atual;
+                db.estoque_materiaprima.SingleOrDefault(x => x.id_matprima == produdo.IdMateriaPrima).quant_atual = materiaAtual + (produdo.QtdeMateriaUsada * item_pedido.quantidade);
+
+
+                var qtdeAtual = db.estoque_produtoacabado.SingleOrDefault(x => x.id_produto == produtoId).quant_atual;
+                db.estoque_produtoacabado.SingleOrDefault(x => x.id_produto == produtoId).quant_atual = qtdeAtual + item_pedido.quantidade;
+
+                db.item_pedido.Remove(item_pedido);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Details", new { id = pedidoId });
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // GET: Pedidos/Edit/5
         public ActionResult Edit(int? id)
