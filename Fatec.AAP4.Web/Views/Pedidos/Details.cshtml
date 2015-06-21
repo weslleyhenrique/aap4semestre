@@ -19,18 +19,23 @@
         @Html.ActionLink("Incluir Produto", "IncluirProd", new { id = Model.idPedido }, new { @class = "btn btn-warning btn-sm" }) |
     </select>*@
 
-    @using (Html.BeginForm("IncluirProd", "Pedidos", FormMethod.Post))
+    @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
         <div class="row">
             <div class="col-md-8">
                 Escolha o Produto:
-                @Html.HiddenFor(x=>x.PedidoSelecionado.idPedido)
+                @*@Html.HiddenFor(x=>x.PedidoSelecionado.idPedido)*@
                 @* Passando o Nome da ViewBag *@
-                @Html.DropDownList("ProdId", String.Empty)
+                @Html.DropDownListFor(p => p.ItemSelecionado, Model.ListEstoqueProd, "Selecione")
 
-                <input type="submit" value="Enviar" class="btn btn-default" />
+                @*<input type="submit" value="Enviar" class="btn btn-default" />*@
+                @Html.ActionLink("Incluir", "IncluirProd",
+                            new { DetalheItens = Model },
+                            new { @class = "btn btn-default btn-sm" })
+
+
             </div>
         </div>
     }

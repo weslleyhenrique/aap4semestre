@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Fatec.AAP4.Web.Models
 {
@@ -11,6 +12,9 @@ namespace Fatec.AAP4.Web.Models
 
         public IEnumerable<item_pedido> ItensDB { get; set; }
         public IEnumerable<estoque_produtoacabado> EstoqueProd { get; set; }
+        public IEnumerable<SelectListItem> ListEstoqueProd { get; set; }
+
+        public int ItemSelecionado { get; set; }
 
         public pedido PedidoSelecionado { get; set; }
 
