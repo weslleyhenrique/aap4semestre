@@ -22,8 +22,9 @@ namespace Fatec.AAP4.Web.Models
         public int idPedido { get; set; }
         public int idCliente { get; set; }
         public Nullable<System.DateTime> data_compra { get; set; }
-        public Nullable<float> valor_total { get; set; }
+        public Nullable<decimal> valor_total { get; set; }
         public int id_item_pedido_fk { get; set; }
+        public int IsConfirmado { get; set; }
     
         public virtual cliente cliente { get; set; }
         public virtual ICollection<contas_receber> contas_receber { get; set; }

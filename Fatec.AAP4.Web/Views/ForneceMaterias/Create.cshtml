@@ -16,7 +16,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.id_fornecedor, "id_fornecedor", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.id_fornecedor, "Código Fornecedor", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("id_fornecedor", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.id_fornecedor, "", new { @class = "text-danger" })
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.id_matprima, "id_matprima", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.id_matprima, "Código Matéria-Prima", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("id_matprima", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.id_matprima, "", new { @class = "text-danger" })

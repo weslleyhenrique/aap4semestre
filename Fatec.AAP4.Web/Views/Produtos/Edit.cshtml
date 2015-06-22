@@ -1,7 +1,7 @@
 ﻿@model Fatec.AAP4.Web.Models.produto
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Alterar";
 }
 
 <h2>Cadastro de produtos</h2>
@@ -34,10 +34,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdMateriaPrima, "Materia Prima Utilizada", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.id_matprima, "Materia Prima Utilizada", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("idMateriaPrima", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IdMateriaPrima, "", new { @class = "text-danger" })
+                @Html.DropDownList("id_matprima", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_matprima, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -46,6 +46,24 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.QtdeMateriaUsada, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.QtdeMateriaUsada, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="precocursto">Preço Custo</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PrecoCusto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PrecoCusto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="impostos">Impostos e Deduções</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ValorImpostos, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ValorImpostos, "", new { @class = "text-danger" })
             </div>
         </div>
 

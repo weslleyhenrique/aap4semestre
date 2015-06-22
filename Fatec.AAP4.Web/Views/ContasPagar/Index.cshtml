@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Fatec.AAP4.Web.Models.contas_pagar>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Consulta";
 }
 
 <div class="panel panel-default">
@@ -13,11 +13,11 @@
     <p>
         @Html.ActionLink("Incluir", "Create", null, new { @class = "btn btn-primary btn-sm" }) <br />
     </p>
-    <table class="table">
+    <table class="table" >
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.data_cadastro)
-            </th>
+            </th>   
             <th>
                 @Html.DisplayNameFor(model => model.descricao_conta)
             </th>
@@ -48,7 +48,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.data_cadastro)
                 </td>
-                <td>
+                <td width="100">
                     @Html.DisplayFor(modelItem => item.descricao_conta)
                 </td>
                 <td>
@@ -67,9 +67,9 @@
                     @Html.DisplayFor(modelItem => item.plano_contas.codigo_planocontas)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.fornecedor.cnpj)
+                    @Html.DisplayFor(modelItem => item.fornecedor.inscricao_estadual)
                 </td>
-                <td>
+                <td width="230">
                     @Html.ActionLink("Editar", "Edit", new { id = item.id_contaspagar }, new { @class = "btn btn-warning btn-sm" }) |
                     @Html.ActionLink("Detalhes", "Details", new { id = item.id_contaspagar }, new { @class = "btn btn-success btn-sm" }) |
                     @Html.ActionLink("Deletar", "Delete", new { id = item.id_contaspagar }, new { @class = "btn btn-danger btn-sm" })
@@ -78,4 +78,13 @@
         }
 
     </table>
+
+    @if (Model.Count() != null && Model.Count() > 0)
+    {
+        <div class="alert alert-success" role="alert" style="text-align:right">
+            <h3>Total a pagar: R$ @Model.Sum(x => x.valor_conta)</h3>
+        </div>
+
+    }
+
 </div>

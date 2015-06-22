@@ -48,7 +48,7 @@ namespace Fatec.AAP4.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_produto,descricao_produto,valor_unitario,id_matprima,QtdeMateriaUsada")] produto produto)
+        public ActionResult Create([Bind(Include = "id_produto,descricao_produto,valor_unitario,id_matprima,QtdeMateriaUsada,PrecoCusto,ValorImpostos")] produto produto)
         {
 
             if (ModelState.IsValid)
@@ -69,7 +69,7 @@ namespace Fatec.AAP4.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             produto produto = db.produto.Find(id);
-            ViewBag.idMateriaPrima = new SelectList(db.materia_prima, "id_matprima", "descricao_matprima");
+            ViewBag.id_matprima = new SelectList(db.materia_prima, "id_matprima", "descricao_matprima");
 
 
             if (produto == null)
@@ -84,7 +84,7 @@ namespace Fatec.AAP4.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_produto,descricao_produto,valor_unitario,IdMateriaPrima,QtdeMateriaUsada")] produto produto)
+        public ActionResult Edit([Bind(Include = "id_produto,descricao_produto,valor_unitario,id_matprima,QtdeMateriaUsada,PrecoCusto,ValorImpostos")] produto produto)
         {
             if (ModelState.IsValid)
             {

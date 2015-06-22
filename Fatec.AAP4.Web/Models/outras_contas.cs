@@ -11,14 +11,23 @@ namespace Fatec.AAP4.Web.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class outras_contas
     {
+
+        [Display(Name = "Código")]
         public int id_conta { get; set; }
+        [Display(Name = "Nome")]
         public string nome_conta { get; set; }
+        [Display(Name = "Descrição")]
         public string descricao_conta { get; set; }
+        [Display(Name = "Data Cadastro")]
         public Nullable<System.DateTime> data_cadastro { get; set; }
+        [Display(Name = "Código Plano Contas")]
         public int Plano_Contas_id_planocontas { get; set; }
+        [Display(Name = "Valor")]
+        public decimal valor { get; set; }
     
         public virtual plano_contas plano_contas { get; set; }
     }

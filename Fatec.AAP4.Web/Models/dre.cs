@@ -11,6 +11,7 @@ namespace Fatec.AAP4.Web.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class dre
     {
@@ -18,8 +19,9 @@ namespace Fatec.AAP4.Web.Models
         {
             this.plano_contas = new HashSet<plano_contas>();
         }
-    
+    [Display(Name = "Código")]
         public int id_dre { get; set; }
+        [Display(Name = "Descrição")]
         public string nome_dre { get; set; }
     
         public virtual ICollection<plano_contas> plano_contas { get; set; }

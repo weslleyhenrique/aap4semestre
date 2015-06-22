@@ -28,7 +28,8 @@ namespace Fatec.AAP4.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            contas_pagar contas_pagar = db.contas_pagar.Find(id);
+            var conta = db.contas_pagar.SingleOrDefault(x => x.id_contaspagar == id);
+            contas_pagar contas_pagar = conta;
             if (contas_pagar == null)
             {
                 return HttpNotFound();
@@ -70,7 +71,8 @@ namespace Fatec.AAP4.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            contas_pagar contas_pagar = db.contas_pagar.Find(id);
+            var conta = db.contas_pagar.SingleOrDefault(x=>x.id_contaspagar==id);
+            contas_pagar contas_pagar = conta;
             if (contas_pagar == null)
             {
                 return HttpNotFound();
@@ -105,7 +107,7 @@ namespace Fatec.AAP4.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            contas_pagar contas_pagar = db.contas_pagar.Find(id);
+            contas_pagar contas_pagar = db.contas_pagar.SingleOrDefault(x=>x.id_contaspagar==id);
             if (contas_pagar == null)
             {
                 return HttpNotFound();
@@ -118,7 +120,7 @@ namespace Fatec.AAP4.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            contas_pagar contas_pagar = db.contas_pagar.Find(id);
+            contas_pagar contas_pagar = db.contas_pagar.SingleOrDefault(x => x.id_contaspagar == id);
             db.contas_pagar.Remove(contas_pagar);
             db.SaveChanges();
             return RedirectToAction("Index");

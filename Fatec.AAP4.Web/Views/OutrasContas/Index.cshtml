@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Fatec.AAP4.Web.Models.outras_contas>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Consulta";
 }
 
 <div class="panel panel-default">
@@ -27,6 +27,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.plano_contas.codigo_planocontas)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.valor)
+            </th>
             <th></th>
         </tr>
 
@@ -46,6 +49,9 @@
                     @Html.DisplayFor(modelItem => item.plano_contas.codigo_planocontas)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.valor)
+                </td>
+                <td>
                     @Html.ActionLink("Editar", "Edit", new { id = item.id_conta }, new { @class = "btn btn-warning btn-sm" }) |
                     @Html.ActionLink("Detalhes", "Details", new { id = item.id_conta }, new { @class = "btn btn-success btn-sm" }) |
                     @Html.ActionLink("Deletar", "Delete", new { id = item.id_conta }, new { @class = "btn btn-danger btn-sm" })
@@ -54,4 +60,13 @@
         }
 
     </table>
+
+    @if (Model.Count() != null && Model.Count() > 0)
+    {
+        <div class="alert alert-success" role="alert" style="text-align:right">
+            <h3>Total a pagar: R$ @Model.Sum(x => x.valor)</h3>
+        </div>
+
+    }
+
 </div>

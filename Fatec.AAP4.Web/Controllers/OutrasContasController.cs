@@ -48,7 +48,7 @@ namespace Fatec.AAP4.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_conta,nome_conta,descricao_conta,data_cadastro,Plano_Contas_id_planocontas")] outras_contas outras_contas)
+        public ActionResult Create([Bind(Include = "id_conta,nome_conta,descricao_conta,data_cadastro,Plano_Contas_id_planocontas,valor")] outras_contas outras_contas)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace Fatec.AAP4.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_conta,nome_conta,descricao_conta,data_cadastro,Plano_Contas_id_planocontas")] outras_contas outras_contas)
+        public ActionResult Edit([Bind(Include = "id_conta,nome_conta,descricao_conta,data_cadastro,Plano_Contas_id_planocontas,valor")] outras_contas outras_contas)
         {
             if (ModelState.IsValid)
             {

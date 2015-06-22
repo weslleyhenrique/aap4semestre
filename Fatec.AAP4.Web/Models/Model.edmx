@@ -24,13 +24,14 @@
         <EntityType Name="contas_pagar">
           <Key>
             <PropertyRef Name="id_contaspagar" />
+            <PropertyRef Name="valor_conta" />
           </Key>
           <Property Name="id_contaspagar" Type="int" Nullable="false" />
           <Property Name="id_fornecedor" Type="int" Nullable="false" />
           <Property Name="id_planocontas" Type="int" Nullable="false" />
           <Property Name="data_cadastro" Type="date" />
           <Property Name="descricao_conta" Type="varchar" MaxLength="100" />
-          <Property Name="valor_conta" Type="varchar" MaxLength="45" />
+          <Property Name="valor_conta" Type="decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="data_vencimento" Type="date" />
           <Property Name="status_conta" Type="varchar" MaxLength="15" />
           <Property Name="observacao" Type="varchar" MaxLength="200" />
@@ -46,6 +47,7 @@
           <Property Name="data_recebimento" Type="datetime" Precision="0" />
           <Property Name="status" Type="varchar" MaxLength="15" />
           <Property Name="forma_pagamento" Type="varchar" MaxLength="15" />
+          <Property Name="Valor_receber" Type="decimal" Precision="10" Scale="0" />
         </EntityType>
         <EntityType Name="dre">
           <Key>
@@ -65,6 +67,7 @@
           <Property Name="quant_minima" Type="int" />
           <Property Name="quant_maxima" Type="int" />
           <Property Name="quant_atual" Type="int" />
+          <Property Name="quant_adicionada" Type="int" />
         </EntityType>
         <EntityType Name="estoque_produtoacabado">
           <Key>
@@ -93,12 +96,12 @@
           </Key>
           <Property Name="id_fornecedor" Type="int" Nullable="false" />
           <Property Name="cnpj" Type="varchar" MaxLength="19" />
-          <Property Name="inscricao_estadual" Type="varchar" MaxLength="11" />
+          <Property Name="inscricao_estadual" Type="varchar" MaxLength="30" />
           <Property Name="endereco" Type="varchar" MaxLength="150" />
           <Property Name="bairro" Type="varchar" MaxLength="60" />
           <Property Name="cidade" Type="varchar" MaxLength="60" />
           <Property Name="uf" Type="varchar" MaxLength="2" />
-          <Property Name="telefone" Type="varchar" MaxLength="11" />
+          <Property Name="telefone" Type="varchar" MaxLength="20" />
           <Property Name="email" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="item_pedido">
@@ -106,9 +109,9 @@
             <PropertyRef Name="key_pedido" />
           </Key>
           <Property Name="id_item_pedido" Type="int" Nullable="false" />
-          <Property Name="valor_unitario_item" Type="double" />
-          <Property Name="quantidade" Type="int" />
-          <Property Name="valor_total_item" Type="double" />
+          <Property Name="valor_unitario_item" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="quantidade" Type="int" Nullable="false" />
+          <Property Name="valor_total_item" Type="decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="id_produto_fk" Type="int" Nullable="false" />
           <Property Name="key_pedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
@@ -118,6 +121,7 @@
           </Key>
           <Property Name="id_matprima" Type="int" Nullable="false" />
           <Property Name="descricao_matprima" Type="varchar" MaxLength="100" />
+          <Property Name="preco_compra" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="outras_contas">
           <Key>
@@ -128,6 +132,7 @@
           <Property Name="descricao_conta" Type="varchar" MaxLength="150" />
           <Property Name="data_cadastro" Type="date" />
           <Property Name="Plano_Contas_id_planocontas" Type="int" Nullable="false" />
+          <Property Name="valor" Type="decimal" Precision="10" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="pedido">
           <Key>
@@ -136,8 +141,9 @@
           <Property Name="idPedido" Type="int" Nullable="false" />
           <Property Name="idCliente" Type="int" Nullable="false" />
           <Property Name="data_compra" Type="date" />
-          <Property Name="valor_total" Type="float" />
+          <Property Name="valor_total" Type="decimal" Precision="10" Scale="0" />
           <Property Name="id_item_pedido_fk" Type="int" Nullable="false" />
+          <Property Name="IsConfirmado" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="plano_contas">
           <Key>
@@ -157,6 +163,8 @@
           <Property Name="valor_unitario" Type="decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="id_matprima" Type="int" Nullable="false" />
           <Property Name="QtdeMateriaUsada" Type="int" Nullable="false" />
+          <Property Name="PrecoCusto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ValorImpostos" Type="decimal" Precision="10" Scale="0" Nullable="false" />
         </EntityType>
         <Association Name="fk_Contas_Pagar_Conta_Movimentação1">
           <End Role="plano_contas" Type="Self.plano_contas" Multiplicity="1" />
@@ -494,13 +502,14 @@
         <EntityType Name="contas_pagar">
           <Key>
             <PropertyRef Name="id_contaspagar" />
+            <PropertyRef Name="valor_conta" />
           </Key>
           <Property Name="id_contaspagar" Type="Int32" Nullable="false" />
           <Property Name="id_fornecedor" Type="Int32" Nullable="false" />
           <Property Name="id_planocontas" Type="Int32" Nullable="false" />
           <Property Name="data_cadastro" Type="DateTime" />
           <Property Name="descricao_conta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="valor_conta" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="valor_conta" Type="Decimal" Nullable="false" />
           <Property Name="data_vencimento" Type="DateTime" />
           <Property Name="status_conta" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="observacao" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
@@ -518,6 +527,7 @@
           <Property Name="data_recebimento" Type="DateTime" />
           <Property Name="status" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="forma_pagamento" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Valor_receber" Type="Decimal" />
           <NavigationProperty Name="plano_contas" Relationship="mydbModel.fk_Contas_Receber_Conta_Movimentação1" FromRole="contas_receber" ToRole="plano_contas" />
           <NavigationProperty Name="pedido" Relationship="mydbModel.fk_Contas_Receber_Pedido1" FromRole="contas_receber" ToRole="pedido" />
         </EntityType>
@@ -540,6 +550,7 @@
           <Property Name="quant_minima" Type="Int32" />
           <Property Name="quant_maxima" Type="Int32" />
           <Property Name="quant_atual" Type="Int32" />
+          <Property Name="quant_adicionada" Type="Int32" />
           <NavigationProperty Name="plano_contas" Relationship="mydbModel.fk_Estoque_MateriaPrima_Conta_Movimentação1" FromRole="estoque_materiaprima" ToRole="plano_contas" />
           <NavigationProperty Name="materia_prima" Relationship="mydbModel.fk_Estoque_MateriaPrima_Materia_Prima1" FromRole="estoque_materiaprima" ToRole="materia_prima" />
         </EntityType>
@@ -574,12 +585,12 @@
           </Key>
           <Property Name="id_fornecedor" Type="Int32" Nullable="false" />
           <Property Name="cnpj" Type="String" MaxLength="19" FixedLength="false" Unicode="false" />
-          <Property Name="inscricao_estadual" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="inscricao_estadual" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="endereco" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="bairro" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="cidade" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="uf" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="telefone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="telefone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="contas_pagar" Relationship="mydbModel.fk_Contas_Pagar_Fornecedor1" FromRole="fornecedor" ToRole="contas_pagar" />
           <NavigationProperty Name="fornece_materiaprima" Relationship="mydbModel.fk_Fornecedor_has_Materia_Prima_Fornecedor1" FromRole="fornecedor" ToRole="fornece_materiaprima" />
@@ -589,9 +600,9 @@
             <PropertyRef Name="key_pedido" />
           </Key>
           <Property Name="id_item_pedido" Type="Int32" Nullable="false" />
-          <Property Name="valor_unitario_item" Type="Double" />
-          <Property Name="quantidade" Type="Int32" />
-          <Property Name="valor_total_item" Type="Double" />
+          <Property Name="valor_unitario_item" Type="Decimal" Nullable="false" />
+          <Property Name="quantidade" Type="Int32" Nullable="false" />
+          <Property Name="valor_total_item" Type="Decimal" Nullable="false" />
           <Property Name="id_produto_fk" Type="Int32" Nullable="false" />
           <Property Name="key_pedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
@@ -601,6 +612,7 @@
           </Key>
           <Property Name="id_matprima" Type="Int32" Nullable="false" />
           <Property Name="descricao_matprima" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="preco_compra" Type="Decimal" Nullable="false" />
           <NavigationProperty Name="estoque_materiaprima" Relationship="mydbModel.fk_Estoque_MateriaPrima_Materia_Prima1" FromRole="materia_prima" ToRole="estoque_materiaprima" />
           <NavigationProperty Name="fornece_materiaprima" Relationship="mydbModel.fk_Fornecedor_has_Materia_Prima_Materia_Prima1" FromRole="materia_prima" ToRole="fornece_materiaprima" />
           <NavigationProperty Name="produto" Relationship="mydbModel.materia" FromRole="materia_prima" ToRole="produto" />
@@ -614,6 +626,7 @@
           <Property Name="descricao_conta" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="data_cadastro" Type="DateTime" />
           <Property Name="Plano_Contas_id_planocontas" Type="Int32" Nullable="false" />
+          <Property Name="valor" Type="Decimal" Nullable="false" />
           <NavigationProperty Name="plano_contas" Relationship="mydbModel.fk_Outras_Contas_Plano_Contas1" FromRole="outras_contas" ToRole="plano_contas" />
         </EntityType>
         <EntityType Name="pedido">
@@ -623,8 +636,9 @@
           <Property Name="idPedido" Type="Int32" Nullable="false" />
           <Property Name="idCliente" Type="Int32" Nullable="false" />
           <Property Name="data_compra" Type="DateTime" />
-          <Property Name="valor_total" Type="Single" />
+          <Property Name="valor_total" Type="Decimal" />
           <Property Name="id_item_pedido_fk" Type="Int32" Nullable="false" />
+          <Property Name="IsConfirmado" Type="Int32" Nullable="false" />
           <NavigationProperty Name="cliente" Relationship="mydbModel.fk_Pedido_Cliente1" FromRole="pedido" ToRole="cliente" />
           <NavigationProperty Name="contas_receber" Relationship="mydbModel.fk_Contas_Receber_Pedido1" FromRole="pedido" ToRole="contas_receber" />
         </EntityType>
@@ -652,6 +666,8 @@
           <Property Name="valor_unitario" Type="Decimal" Nullable="false" />
           <Property Name="id_matprima" Type="Int32" Nullable="false" />
           <Property Name="QtdeMateriaUsada" Type="Int32" Nullable="false" />
+          <Property Name="PrecoCusto" Type="Decimal" Nullable="false" />
+          <Property Name="ValorImpostos" Type="Decimal" Nullable="false" />
           <NavigationProperty Name="estoque_produtoacabado" Relationship="mydbModel.fk_Estoque_ProdutoAcabado_Produto1" FromRole="produto" ToRole="estoque_produtoacabado" />
           <NavigationProperty Name="materia_prima" Relationship="mydbModel.materia" FromRole="produto" ToRole="materia_prima" />
         </EntityType>
@@ -864,6 +880,7 @@
           <EntitySetMapping Name="contas_receber">
             <EntityTypeMapping TypeName="mydbModel.contas_receber">
               <MappingFragment StoreEntitySet="contas_receber">
+                <ScalarProperty Name="Valor_receber" ColumnName="Valor_receber" />
                 <ScalarProperty Name="forma_pagamento" ColumnName="forma_pagamento" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="data_recebimento" ColumnName="data_recebimento" />
@@ -885,6 +902,7 @@
           <EntitySetMapping Name="estoque_materiaprima">
             <EntityTypeMapping TypeName="mydbModel.estoque_materiaprima">
               <MappingFragment StoreEntitySet="estoque_materiaprima">
+                <ScalarProperty Name="quant_adicionada" ColumnName="quant_adicionada" />
                 <ScalarProperty Name="quant_atual" ColumnName="quant_atual" />
                 <ScalarProperty Name="quant_maxima" ColumnName="quant_maxima" />
                 <ScalarProperty Name="quant_minima" ColumnName="quant_minima" />
@@ -948,6 +966,7 @@
           <EntitySetMapping Name="materia_prima">
             <EntityTypeMapping TypeName="mydbModel.materia_prima">
               <MappingFragment StoreEntitySet="materia-prima">
+                <ScalarProperty Name="preco_compra" ColumnName="preco_compra" />
                 <ScalarProperty Name="descricao_matprima" ColumnName="descricao_matprima" />
                 <ScalarProperty Name="id_matprima" ColumnName="id_matprima" />
               </MappingFragment>
@@ -956,6 +975,7 @@
           <EntitySetMapping Name="outras_contas">
             <EntityTypeMapping TypeName="mydbModel.outras_contas">
               <MappingFragment StoreEntitySet="outras_contas">
+                <ScalarProperty Name="valor" ColumnName="valor" />
                 <ScalarProperty Name="Plano_Contas_id_planocontas" ColumnName="Plano_Contas_id_planocontas" />
                 <ScalarProperty Name="data_cadastro" ColumnName="data_cadastro" />
                 <ScalarProperty Name="descricao_conta" ColumnName="descricao_conta" />
@@ -967,6 +987,7 @@
           <EntitySetMapping Name="pedido">
             <EntityTypeMapping TypeName="mydbModel.pedido">
               <MappingFragment StoreEntitySet="pedido">
+                <ScalarProperty Name="IsConfirmado" ColumnName="IsConfirmado" />
                 <ScalarProperty Name="id_item_pedido_fk" ColumnName="id_item_pedido_fk" />
                 <ScalarProperty Name="valor_total" ColumnName="valor_total" />
                 <ScalarProperty Name="data_compra" ColumnName="data_compra" />
@@ -988,6 +1009,8 @@
           <EntitySetMapping Name="produto">
             <EntityTypeMapping TypeName="mydbModel.produto">
               <MappingFragment StoreEntitySet="produto">
+                <ScalarProperty Name="ValorImpostos" ColumnName="ValorImpostos" />
+                <ScalarProperty Name="PrecoCusto" ColumnName="PrecoCusto" />
                 <ScalarProperty Name="QtdeMateriaUsada" ColumnName="QtdeMateriaUsada" />
                 <ScalarProperty Name="id_matprima" ColumnName="id_matprima" />
                 <ScalarProperty Name="valor_unitario" ColumnName="valor_unitario" />

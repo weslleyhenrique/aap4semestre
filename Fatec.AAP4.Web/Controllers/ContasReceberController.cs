@@ -49,7 +49,7 @@ namespace Fatec.AAP4.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idContas_Receber,idPedido,id_planocontas,data_cadastro,data_recebimento,status,forma_pagamento")] contas_receber contas_receber)
+        public ActionResult Create([Bind(Include = "idContas_Receber,idPedido,id_planocontas,data_cadastro,data_recebimento,status,forma_pagamento,Valor_receber")] contas_receber contas_receber)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace Fatec.AAP4.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idContas_Receber,idPedido,id_planocontas,data_cadastro,data_recebimento,status,forma_pagamento")] contas_receber contas_receber)
+        public ActionResult Edit([Bind(Include = "idContas_Receber,idPedido,id_planocontas,data_cadastro,data_recebimento,status,forma_pagamento,Valor_receber")] contas_receber contas_receber)
         {
             if (ModelState.IsValid)
             {

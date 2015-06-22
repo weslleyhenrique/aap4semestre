@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Fatec.AAP4.Web.Models.fornece_materiaprima>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Consulta";
 }
 
 <div class="panel panel-default">
@@ -17,7 +17,7 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.fornecedor.cnpj)
+                @Html.DisplayNameFor(model => model.fornecedor.inscricao_estadual)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.materia_prima.descricao_matprima)
@@ -29,7 +29,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.fornecedor.cnpj)
+                    @Html.DisplayFor(modelItem => item.fornecedor.inscricao_estadual)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.materia_prima.descricao_matprima)

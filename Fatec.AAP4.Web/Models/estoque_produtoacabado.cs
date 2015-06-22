@@ -11,16 +11,25 @@ namespace Fatec.AAP4.Web.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class estoque_produtoacabado
     {
+        [Display(Name = "Código Estoque Produto")]
         public int id_estoque_prodacab { get; set; }
+        [Display(Name = "Código Produto")]
         public int id_produto { get; set; }
+        [Display(Name = "Código Plano Contas")]
         public int id_planocontas { get; set; }
+        [Display(Name = "Data Fabricação")]
         public Nullable<System.DateTime> data_fabricacao { get; set; }
+        [Display(Name = "Data Estocagem")]
         public Nullable<System.DateTime> data_estocagem { get; set; }
+        [Display(Name = "Quantidade minima")]
         public Nullable<int> quant_minima { get; set; }
+        [Display(Name = "Quantidade máxima")]
         public Nullable<int> quant_maxima { get; set; }
+        [Display(Name = "Quantidade atual")]
         public Nullable<int> quant_atual { get; set; }
     
         public virtual plano_contas plano_contas { get; set; }

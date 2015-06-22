@@ -15,9 +15,9 @@ namespace Fatec.AAP4.Web.Models
     public partial class item_pedido
     {
         public int id_item_pedido { get; set; }
-        public Nullable<double> valor_unitario_item { get; set; }
-        public Nullable<int> quantidade { get; set; }
-        public Nullable<double> valor_total_item { get; set; }
+        public decimal valor_unitario_item { get; set; }
+        public int quantidade { get; set; }
+        public decimal valor_total_item { get; set; }
         public int id_produto_fk { get; set; }
         public int key_pedido { get; set; }
     }

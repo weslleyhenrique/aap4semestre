@@ -11,11 +11,15 @@ namespace Fatec.AAP4.Web.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class fornece_materiaprima
     {
+        [Display(Name = "Código Fornecedor")]
         public int id_fornecedor { get; set; }
+        [Display(Name = "Código Materia-Prima")]
         public int id_matprima { get; set; }
+        [Display(Name = "Código Fornecedor por Materia-Prima")]
         public int id_fornecedor_materiaprima { get; set; }
     
         public virtual fornecedor fornecedor { get; set; }

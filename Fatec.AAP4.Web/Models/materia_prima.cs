@@ -11,6 +11,7 @@ namespace Fatec.AAP4.Web.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class materia_prima
     {
@@ -20,9 +21,15 @@ namespace Fatec.AAP4.Web.Models
             this.fornece_materiaprima = new HashSet<fornece_materiaprima>();
             this.produto = new HashSet<produto>();
         }
-    
+
+        [Display(Name = "Código")]
         public int id_matprima { get; set; }
+        [Display(Name = "Descrição")]
+
         public string descricao_matprima { get; set; }
+        [Display(Name = "Preço Unitário")]
+
+        public decimal preco_compra { get; set; }
     
         public virtual ICollection<estoque_materiaprima> estoque_materiaprima { get; set; }
         public virtual ICollection<fornece_materiaprima> fornece_materiaprima { get; set; }

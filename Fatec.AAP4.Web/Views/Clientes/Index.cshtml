@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Fatec.AAP4.Web.Models.cliente>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Consulta";
 }
 
 <div class="panel panel-default">
@@ -81,7 +81,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.contato)
                 </td>
-                <td>
+                <td width="230">
 
                     @Html.ActionLink("Editar", "Edit", new { id = item.idCliente }, new { @class = "btn btn-warning btn-sm" }) |
                     @Html.ActionLink("Detalhes", "Details", new { id = item.idCliente }, new { @class = "btn btn-success btn-sm" }) |

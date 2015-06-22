@@ -1,26 +1,191 @@
-﻿@model Fatec.AAP4.Web.Models.dre
+﻿@model Fatec.AAP4.Web.Models.DreViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Demonstrativo";
 }
 
-<h2>Details</h2>
+<h2>Demonstrativo de resultado do exercício : @Model.DreSelecionado.nome_dre</h2>
 
 <div>
-    <h4>dre</h4>
+    <h4>Vendas</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nome_dre)
-        </dt>
+    <table class="table">
 
-        <dd>
-            @Html.DisplayFor(model => model.nome_dre)
-        </dd>
+        <tr style="background-color:lightblue">
+            <th>
+                (+) Receita Bruta
+            </th>
 
-    </dl>
+            <td>
+                R$ @Html.DisplayFor(model => Model.TotalVendasBrutas)
+            </td>
+        </tr>
+
+
+
+
+
+        <tr>
+            <th>
+                (-) Impostos e Deduções
+            </th>
+
+            <td>
+                R$ @Html.DisplayFor(model => Model.TotalImpostos)
+            </td>
+        </tr>
+
+
+
+
+        <tr style="background-color:lightyellow">
+            <th>
+                <b>(=) Receita Liquida</b>
+            </th>
+
+            <td>
+                R$ @Html.DisplayFor(model => Model.ReceitaLiquida)
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>
+                (-) Custo das Mercadorias Vendidas
+            </th>
+
+            <td>
+                R$ @Html.DisplayFor(model => Model.TotalCMV)
+            </td>
+        </tr>
+
+
+
+        <tr style="background-color:lightyellow">
+            <th>
+                <b>(=) Lucro Bruto</b>
+            </th>
+
+            <td>
+                R$ @Html.DisplayFor(model => Model.LucroBruto)
+            </td>
+        </tr>
+
+
+
+
+        <tr style="background-color:lightgray">
+            <th>
+                <b>(-) Despesas Operacionais</b>
+            </th>
+        </tr>
+         @foreach (var item in Model.DespesasOperacionais)
+         {
+        <tr>
+            <th>
+                (-) @item.descricao_conta
+            </th>
+
+            <td>
+                R$ @item.valor_conta
+            </td>
+        </tr>
+        }
+
+
+
+
+        <tr style="background-color:lightyellow">
+            <th>
+                <b>(=) LAJIR</b>
+            </th>
+
+            <td>
+                R$ @Html.DisplayFor(model => Model.LAJIR)
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>
+                (-) Despesas Financeiras
+            </th>
+
+            <td>
+                R$ @Html.DisplayFor(model => Model.TotalDespesasFinanceiras)
+            </td>
+        </tr>
+
+
+        <tr style="background-color:lightyellow">
+            <th>
+                <b>(=) LAIR</b>
+            </th>
+
+            <td>
+                R$ @Html.DisplayFor(model => Model.LAIR)
+            </td>
+        </tr>
+
+
+
+
+        <tr>
+            <th>
+                (-) IR (30%)
+            </th>
+
+            <td>
+                R$ @Html.DisplayFor(model => Model.IR)
+            </td>
+        </tr>
+
+
+        @if (Model.LucroLiquido > 0)
+        {
+            <tr style="background-color:greenyellow">
+                <th>
+                    <b>(=) Lucro Liquido</b>
+                </th>
+
+                <td>
+                    R$ @Html.DisplayFor(model => Model.LucroLiquido)
+                </td>
+            </tr>
+        }
+        else if (Model.LucroLiquido < 0) 
+        {
+            <tr style="background-color:#FFA6A6">
+                <th>
+                    <b>(=) Lucro Liquido</b>
+                </th>
+
+                <td>
+                    R$ @Html.DisplayFor(model => Model.LucroLiquido)
+                </td>
+            </tr>
+        }
+        else
+        {
+            <tr style="background-color:yellow">
+                <th>
+                    <b>(=) Lucro Liquido</b>
+                </th>
+
+                <td>
+                    R$ @Html.DisplayFor(model => Model.LucroLiquido)
+                </td>
+            </tr>
+        }
+
+
+
+
+
+
+    </table>
 </div>
 <p>
-        @Html.ActionLink("Editar", "Edit", new { id = Model.id_dre }, new { @class = "btn btn-warning btn-sm" }) |
+        @Html.ActionLink("Editar", "Edit", new { id = Model.DreSelecionado.id_dre }, new { @class = "btn btn-warning btn-sm" }) |
         @Html.ActionLink("Voltar", "Index", null,new { @class = "btn btn-default btn-sm" })
 </p>

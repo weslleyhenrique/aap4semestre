@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - AAP4</title>
+    <title>@ViewBag.Title - SIM v1.3</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -20,7 +20,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img src="~/Content/logo.png" width="150" height="60"/>
+                <a href="~/">
+                    <img src="~/Content/logo.png" width="150" height="65" />
+                </a>
             </div>
 
             <div id="navbar" class="navbar-collapse collapse">
@@ -62,7 +64,7 @@
                             <li>@Html.ActionLink("Estoque Matéria-Prima", "Index", "EstoqueMateria")</li>
                             <li>@Html.ActionLink("Estoque de Produto", "Index", "EstoqueProduto")</li>
                             <li>@Html.ActionLink("Fornecedores", "Index", "Fornecedores")</li>
-                            <li>@Html.ActionLink("Fornecedore/Materia", "Index", "ForneceMaterias")</li>
+                            <li>@Html.ActionLink("Fornecedor/Matéria", "Index", "ForneceMaterias")</li>
                             <li>@Html.ActionLink("Materias Primas", "Index", "MateriasPrima")</li>
                         </ul>
                     </li>
@@ -96,7 +98,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - AAP 4º Semetre Web Aplication</p>
+            <p>&copy; @DateTime.Now.Year - SIM v1.3 Web Aplication</p>
         </footer>
     </div>
 

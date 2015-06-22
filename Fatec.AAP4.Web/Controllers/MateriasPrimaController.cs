@@ -46,7 +46,7 @@ namespace Fatec.AAP4.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_matprima,descricao_matprima")] materia_prima materia_prima)
+        public ActionResult Create([Bind(Include = "id_matprima,descricao_matprima,preco_compra")] materia_prima materia_prima)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace Fatec.AAP4.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_matprima,descricao_matprima")] materia_prima materia_prima)
+        public ActionResult Edit([Bind(Include = "id_matprima,descricao_matprima,preco_compra")] materia_prima materia_prima)
         {
             if (ModelState.IsValid)
             {

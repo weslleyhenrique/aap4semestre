@@ -85,6 +85,7 @@ namespace Fatec.AAP4.Web.Controllers
             }
             ViewBag.id_planocontas = new SelectList(db.plano_contas, "id_planocontas", "codigo_planocontas", estoque_produtoacabado.id_planocontas);
             ViewBag.id_produto = new SelectList(db.produto, "id_produto", "descricao_produto", estoque_produtoacabado.id_produto);
+            
             return View(estoque_produtoacabado);
         }
 
@@ -97,9 +98,24 @@ namespace Fatec.AAP4.Web.Controllers
         {
 
             var produdo = db.produto.SingleOrDefault(x => x.id_produto == estoque_produtoacabado.id_produto);
-
             var materiaAtual = db.estoque_materiaprima.SingleOrDefault(x => x.id_matprima == produdo.id_matprima).quant_atual;
-            db.estoque_materiaprima.SingleOrDefault(x => x.id_matprima == produdo.id_matprima).quant_atual = (produdo.QtdeMateriaUsada * estoque_produtoacabado.quant_atual);
+
+
+            var qtdeMateria = produdo.QtdeMateriaUsada * estoque_produtoacabado.quant_atual;
+
+            if (qtdeMateria > materiaAtual)
+            {
+                ViewBag.id_planocontas = new SelectList(db.plano_contas, "id_planocontas", "codigo_planocontas", estoque_produtoacabado.id_planocontas);
+                ViewBag.id_produto = new SelectList(db.produto, "id_produto", "descricao_produto", estoque_produtoacabado.id_produto);
+                ViewBag.Atual = materiaAtual;
+                ViewBag.Requirida = qtdeMateria;
+                ViewBag.necessario = qtdeMateria - materiaAtual;
+                ViewBag.SemMateriaPrima = 1;
+                return View(estoque_produtoacabado);
+            }
+
+
+            db.estoque_materiaprima.SingleOrDefault(x => x.id_matprima == produdo.id_matprima).quant_atual = materiaAtual - qtdeMateria;
 
 
 

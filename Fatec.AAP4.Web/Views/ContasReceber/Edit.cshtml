@@ -1,10 +1,10 @@
 ﻿@model Fatec.AAP4.Web.Models.contas_receber
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Alterar";
 }
 
-<h2>Edit</h2>
+<h2>Alterar</h2>
 
 
 @using (Html.BeginForm())
@@ -62,6 +62,15 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.forma_pagamento, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.forma_pagamento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Valor_receber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Valor_receber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Valor_receber, "", new { @class = "text-danger" })
             </div>
         </div>
 

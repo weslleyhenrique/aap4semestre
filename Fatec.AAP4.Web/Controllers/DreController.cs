@@ -27,12 +27,75 @@ namespace Fatec.AAP4.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            dre dre = db.dre.Find(id);
-            if (dre == null)
+
+            DreViewModel Dre = new DreViewModel();
+            var prod = db.produto.ToList();
+
+            decimal bruto = 0.00m;
+
+            var itens = db.item_pedido.ToList();
+            foreach (var item in itens)
+            {
+                bruto = bruto + item.valor_total_item;
+            }
+            Dre.TotalVendasBrutas = Convert.ToDecimal(bruto);
+
+            decimal totalimposto = 0;
+            foreach (var item in db.item_pedido)
+            {
+                var imposto = prod.SingleOrDefault(x => x.id_produto == item.id_produto_fk).ValorImpostos;
+                totalimposto = totalimposto + imposto * Convert.ToDecimal(item.quantidade);
+            }
+            Dre.TotalImpostos = totalimposto;
+            Dre.ReceitaLiquida = Dre.TotalVendasBrutas - Dre.TotalImpostos;
+
+
+            decimal totalcusto = 0;
+            foreach (var item in db.item_pedido)
+            {
+                var custo = prod.SingleOrDefault(x => x.id_produto == item.id_produto_fk).PrecoCusto;
+                totalcusto = totalcusto + custo * Convert.ToDecimal(item.quantidade);
+            }
+            Dre.TotalCMV = totalcusto;
+            Dre.LucroBruto = Dre.ReceitaLiquida - Dre.TotalCMV;
+
+
+            decimal operacional = 0.00m;
+
+            var oper = db.contas_pagar.ToList();
+            foreach (var item in oper)
+            {
+                operacional = operacional + item.valor_conta;
+            }
+            Dre.TotalDespesasOperacionais = operacional;
+            Dre.DespesasOperacionais = db.contas_pagar.ToList();
+
+            Dre.LAJIR = Dre.LucroBruto - Dre.TotalDespesasOperacionais;
+
+            decimal financ = 0.00m;
+            var Listfinanc = db.outras_contas.ToList();
+            foreach (var item in Listfinanc)
+            {
+                financ = financ + item.valor;
+            }
+            Dre.TotalDespesasFinanceiras = financ;
+
+
+            Dre.DespesasFinanceiras = db.outras_contas.ToList();
+
+            Dre.LAIR = Dre.LAJIR - Dre.TotalDespesasFinanceiras;
+
+            Dre.IR = Dre.LAJIR * 0.30m;
+
+            Dre.LucroLiquido = Dre.LAIR - Dre.IR;
+
+
+            Dre.DreSelecionado = db.dre.Find(id);
+            if (Dre.DreSelecionado == null)
             {
                 return HttpNotFound();
             }
-            return View(dre);
+            return View(Dre);
         }
 
         // GET: Dre/Create

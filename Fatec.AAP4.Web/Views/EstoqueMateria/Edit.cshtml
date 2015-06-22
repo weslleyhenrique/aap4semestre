@@ -1,10 +1,10 @@
 ﻿@model Fatec.AAP4.Web.Models.estoque_materiaprima
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Alterar";
 }
 
-<h2>Edit</h2>
+<h2>Alterar</h2>
 
 
 @using (Html.BeginForm())
@@ -18,7 +18,7 @@
         @Html.HiddenFor(model => model.id_estoque_matprima)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.id_matprima, "id_matprima", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.id_matprima, "Código Matéria-Prima", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("id_matprima", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.id_matprima, "", new { @class = "text-danger" })
@@ -33,13 +33,6 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.data_estocagem, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.data_estocagem, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.data_estocagem, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.quant_minima, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -57,13 +50,33 @@
             </div>
         </div>
 
+
         <div class="form-group">
             @Html.LabelFor(model => model.quant_atual, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.quant_atual, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.quant_atual, "", new { @class = "text-danger" })
+                <div class="alert alert-success" role="alert">
+                    <b>
+                        <input class="form-control text-box single-line valid" data-val="true" data-val-number="The field quant_atual must be a number." id="quant_atual" name="quant_atual" type="number" value="@Model.quant_atual" aria-invalid="false" aria-describedby="quant_atual-error">
+
+
+                        @*@Html.EditorFor(model => model.quant_atual, new { htmlAttributes = new { @class = "form-control" } })*@
+                    </b>
+
+
+                    @Html.ValidationMessageFor(model => model.quant_atual, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="quant_adicionada">Adicionar:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.quant_adicionada, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.quant_adicionada, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

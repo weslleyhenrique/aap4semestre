@@ -1,10 +1,10 @@
 ﻿@model Fatec.AAP4.Web.Models.contas_pagar
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Alterar";
 }
 
-<h2>Edit</h2>
+<h2>Alterar</h2>
 
 
 @using (Html.BeginForm())
@@ -18,7 +18,7 @@
         @Html.HiddenFor(model => model.id_contaspagar)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.id_fornecedor, "id_fornecedor", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.id_fornecedor, "Código Fornecedor", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("id_fornecedor", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.id_fornecedor, "", new { @class = "text-danger" })

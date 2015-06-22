@@ -1,16 +1,27 @@
 ﻿@model Fatec.AAP4.Web.Models.estoque_produtoacabado
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Alterar";
 }
 
-<h2>Edit</h2>
+<h2>Alterar</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
+    if (ViewBag.SemMateriaPrima == 1)
+    {
+        <div class="alert alert-warning" role="alert">
+            <h4>Sem estoque de materia-prima <br /><br />
+            - Estoque atual: @ViewBag.Atual<br />
+            - Estoque solicitado: @ViewBag.Requirida<br />
+            - Estoque Necessário: @ViewBag.necessario
+             </h4>
+        </div>
+    }
+
     <div class="form-horizontal">
         <h4>estoque_produtoacabado</h4>
         <hr />
@@ -34,28 +45,13 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.data_fabricacao, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.data_fabricacao, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.data_fabricacao, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.data_estocagem, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.data_estocagem, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.data_estocagem, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.quant_minima, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.quant_minima, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.quant_minima, "", new { @class = "text-danger" })
             </div>
         </div>
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.quant_maxima, htmlAttributes: new { @class = "control-label col-md-2" })

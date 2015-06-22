@@ -24,6 +24,8 @@ namespace Fatec.AAP4.Web.Models
         public decimal valor_unitario { get; set; }
         public int id_matprima { get; set; }
         public int QtdeMateriaUsada { get; set; }
+        public decimal PrecoCusto { get; set; }
+        public decimal ValorImpostos { get; set; }
     
         public virtual ICollection<estoque_produtoacabado> estoque_produtoacabado { get; set; }
         public virtual materia_prima materia_prima { get; set; }

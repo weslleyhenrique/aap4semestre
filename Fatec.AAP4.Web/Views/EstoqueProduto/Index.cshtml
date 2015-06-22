@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Fatec.AAP4.Web.Models.estoque_produtoacabado>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Consulta";
 }
 
 <div class="panel panel-default">
@@ -16,10 +16,7 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.data_fabricacao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.data_estocagem)
+                @Html.DisplayNameFor(model => model.produto.descricao_produto)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.quant_minima)
@@ -33,9 +30,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.plano_contas.codigo_planocontas)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.produto.descricao_produto)
-            </th>
+
             <th></th>
         </tr>
 
@@ -43,10 +38,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.data_fabricacao)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.data_estocagem)
+                    @Html.DisplayFor(modelItem => item.produto.descricao_produto)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.quant_minima)
@@ -60,9 +52,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.plano_contas.codigo_planocontas)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.produto.descricao_produto)
-                </td>
+
                 <td>
                     @Html.ActionLink("Editar", "Edit", new { id = item.id_estoque_prodacab }, new { @class = "btn btn-warning btn-sm" }) |
                     @Html.ActionLink("Detalhes", "Details", new { id = item.id_estoque_prodacab }, new { @class = "btn btn-success btn-sm" }) |

@@ -93,8 +93,20 @@
                 </tr>
             }
         }
+        
+
+
         </table>
-      
+    <tr>
+        @if (Model.ItensDB != null)
+        {
+            <div class="alert alert-success  role=" alert" style="text-align:right">
+                <h3>Total pedido: R$ @Model.ItensDB.Sum(x => x.valor_total_item)</h3>
+            </div>
+
+        }
+    </tr>
+
 </div>
 <p>
         @Html.ActionLink("Voltar", "Index", null,new { @class = "btn btn-danger btn-sm" })

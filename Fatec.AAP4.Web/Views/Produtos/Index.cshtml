@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<Fatec.AAP4.Web.Models.produto>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Consulta";
 }
 
 
-<div class="panel panel-default">
+<div class="panel panel-default" >
     <div class="panel-heading">
 
         <h2>Cadastro de produtos</h2>
@@ -35,6 +35,12 @@
                 <th>
                     Matéria-Prima Utilizada
                 </th>
+                <th>
+                    Preço Custo
+                </th>
+                <th>
+                    Impostos e Deduções
+                </th>
                 <th></th>
             </tr>
 
@@ -56,8 +62,15 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.materia_prima.descricao_matprima)
                     </td>
-                    <td>
 
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PrecoCusto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ValorImpostos)
+                    </td>
+
+                    <td width="230">
                         @Html.ActionLink("Editar", "Edit", new { id = item.id_produto }, new { @class = "btn btn-warning btn-sm" }) |
                         @Html.ActionLink("Detalhes", "Details", new { id = item.id_produto }, new { @class = "btn btn-success btn-sm" }) |
                         @Html.ActionLink("Deletar", "Delete", new { id = item.id_produto }, new { @class = "btn btn-danger btn-sm" })

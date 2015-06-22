@@ -11,6 +11,7 @@ namespace Fatec.AAP4.Web.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class fornecedor
     {
@@ -19,15 +20,24 @@ namespace Fatec.AAP4.Web.Models
             this.contas_pagar = new HashSet<contas_pagar>();
             this.fornece_materiaprima = new HashSet<fornece_materiaprima>();
         }
-    
+
+        [Display(Name = "Código Fornecedor")]
         public int id_fornecedor { get; set; }
+        [Display(Name = "CNPJ")]
         public string cnpj { get; set; }
+        [Display(Name = "Razão Social")]
         public string inscricao_estadual { get; set; }
+        [Display(Name = "Endereço")]
         public string endereco { get; set; }
+        [Display(Name = "Bairro")]
         public string bairro { get; set; }
+        [Display(Name = "Cidade")]
         public string cidade { get; set; }
+        [Display(Name = "UF")]
         public string uf { get; set; }
+        [Display(Name = "Telefone")]
         public string telefone { get; set; }
+        [Display(Name = "Email")]
         public string email { get; set; }
     
         public virtual ICollection<contas_pagar> contas_pagar { get; set; }

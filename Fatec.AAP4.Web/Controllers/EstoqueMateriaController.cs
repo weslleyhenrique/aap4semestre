@@ -71,6 +71,7 @@ namespace Fatec.AAP4.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             estoque_materiaprima estoque_materiaprima = db.estoque_materiaprima.Find(id);
+            estoque_materiaprima.quant_adicionada = 0;
             if (estoque_materiaprima == null)
             {
                 return HttpNotFound();
@@ -85,10 +86,30 @@ namespace Fatec.AAP4.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_estoque_matprima,id_matprima,id_planocontas,data_estocagem,quant_minima,quant_maxima,quant_atual")] estoque_materiaprima estoque_materiaprima)
+        public ActionResult Edit([Bind(Include = "id_estoque_matprima,id_matprima,id_planocontas,data_estocagem,quant_minima,quant_maxima,quant_atual,quant_adicionada")] estoque_materiaprima estoque_materiaprima)
         {
+            Random r = new Random();
+            estoque_materiaprima.quant_atual = estoque_materiaprima.quant_atual + estoque_materiaprima.quant_adicionada;
+
+
+            var materia = db.materia_prima.SingleOrDefault(x => x.id_matprima == estoque_materiaprima.id_matprima);
+            var fornecedorMateria = db.fornece_materiaprima.SingleOrDefault(x => x.id_matprima == materia.id_matprima);
+            var fornecedor = db.fornecedor.SingleOrDefault(x => x.id_fornecedor == fornecedorMateria.id_fornecedor);
+
+
+
+
             if (ModelState.IsValid)
             {
+                var aPagar = new contas_pagar();
+                aPagar.id_contaspagar = r.Next(1000, 9999);
+                aPagar.descricao_conta = "Compra de Matéria-Prima:" + materia.descricao_matprima;
+                aPagar.id_planocontas = estoque_materiaprima.id_planocontas;
+                aPagar.id_fornecedor = fornecedor.id_fornecedor;
+                aPagar.valor_conta = materia.preco_compra * Convert.ToDecimal(estoque_materiaprima.quant_adicionada);
+
+                db.contas_pagar.Add(aPagar);
+
                 db.Entry(estoque_materiaprima).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
